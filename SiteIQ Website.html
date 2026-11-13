@@ -1,0 +1,757 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>SiteIQ Website</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+Arabic:wght@400;600;700&display=swap">
+<style>
+/* Layout: a construction drawing set. Each section is a numbered "sheet" with a title block, crop-mark corners on cards, blueprint grid in the hero. Dark hero always; the rest follows theme. */
+:root{
+  --display:'Bricolage Grotesque','Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --bg:#0B1220; --bg2:#0E182B; --paper:rgba(255,255,255,.045); --paper2:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.11); --line2:rgba(255,255,255,.22);
+  --text:#EAF0FA; --muted:#9DABC6; --dim:#6E7B97;
+  --accent:#FF7A1A; --accent2:#F26200; --ink:#FF9B50; --on-accent:#1A0D00;
+  --teal:#22D3C5; --tink:#4FE3D6; --good:#34D399; --warn:#FBBF24; --bad:#FB7185;
+  --nav:rgba(11,18,32,.82); --shadow:0 24px 60px rgba(0,0,0,.42); --grid:rgba(255,255,255,.055);
+  --mock:#0A1425; --mline:rgba(255,255,255,.11);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#F4F6FA; --bg2:#E9EEF6; --paper:rgba(255,255,255,.85); --paper2:#FFFFFF;
+  --line:rgba(11,18,32,.12); --line2:rgba(11,18,32,.26);
+  --text:#0B1220; --muted:#47567A; --dim:#7886A2;
+  --accent:#F26A00; --accent2:#D95C00; --ink:#B84A00; --on-accent:#FFFFFF;
+  --teal:#0FB5A8; --tink:#0A7F76; --good:#0F9F6E; --warn:#A8690B; --bad:#D6314B;
+  --nav:rgba(244,246,250,.86); --shadow:0 18px 50px rgba(20,35,70,.14); --grid:rgba(11,18,32,.07);
+  color-scheme:light;
+}}
+:root[data-theme="light"]{
+  --bg:#F4F6FA; --bg2:#E9EEF6; --paper:rgba(255,255,255,.85); --paper2:#FFFFFF;
+  --line:rgba(11,18,32,.12); --line2:rgba(11,18,32,.26);
+  --text:#0B1220; --muted:#47567A; --dim:#7886A2;
+  --accent:#F26A00; --accent2:#D95C00; --ink:#B84A00; --on-accent:#FFFFFF;
+  --teal:#0FB5A8; --tink:#0A7F76; --good:#0F9F6E; --warn:#A8690B; --bad:#D6314B;
+  --nav:rgba(244,246,250,.86); --shadow:0 18px 50px rgba(20,35,70,.14); --grid:rgba(11,18,32,.07);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.65 Inter,'Noto Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--nav)}
+h1,h2,h3,h4,p{margin:0}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto}
+.full{margin-inline:-16px;padding-inline:16px}
+.mono{font-family:var(--mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--teal));z-index:80}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;margin-inline:-16px;padding:11px 16px;background:var(--nav);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav .in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font:800 21px var(--display);letter-spacing:-.03em}
+.logo b{color:var(--accent)}.logo svg{width:30px;height:30px}
+.links{display:flex;gap:2px;margin-inline-start:10px}
+.links a{padding:8px 11px;border-radius:7px;color:var(--muted);font-weight:500;font-size:14px;transition:color .2s,background .2s}
+.links a:hover{color:var(--text);background:var(--paper)}
+.sp{flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:9px;border:1px solid var(--line2);background:var(--paper2);color:var(--text);font-weight:650;font-size:14.5px;cursor:pointer;transition:transform .15s,box-shadow .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri{background:linear-gradient(180deg,var(--accent),var(--accent2));color:var(--on-accent);border-color:transparent;box-shadow:0 10px 28px rgba(255,122,26,.3)}
+.btn.lg{padding:15px 26px;font-size:16px;border-radius:11px}
+.btn.dk{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);color:#fff}
+.icb{width:40px;height:40px;border-radius:9px;display:grid;place-items:center;border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--muted)}
+.icb:hover{color:var(--text)}
+.burger{display:none}.mnav{display:none}
+
+/* hero */
+.hero{position:relative;margin-inline:-16px;padding-inline:16px;background:#070D1A;color:#EAF0FA;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.1)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(34,211,197,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,197,.09) 1px,transparent 1px),linear-gradient(rgba(34,211,197,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,197,.04) 1px,transparent 1px);background-size:80px 80px,80px 80px,16px 16px,16px 16px;mask-image:radial-gradient(ellipse at 70% 40%,#000 25%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 70% 40%,#000 25%,transparent 75%)}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:160px;background:linear-gradient(transparent,#070D1A)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:30px;align-items:center;min-height:640px;padding-block:70px 90px}
+.tagline{display:inline-flex;gap:10px;align-items:center;padding:6px 12px;border:1px solid rgba(255,255,255,.2);font-size:11.5px;color:#B5C2DC;background:rgba(255,255,255,.05);border-radius:4px}
+.tagline i{width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 4px rgba(255,122,26,.22)}
+.hero h1{font:800 clamp(46px,6.6vw,86px)/.96 var(--display);letter-spacing:-.045em;margin-top:22px;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{font-size:19px;color:#A9B7D2;max-width:540px;margin-top:22px}
+.cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.hstats{display:flex;gap:34px;margin-top:40px;flex-wrap:wrap}
+.hstats div{font-size:12.5px;color:#8E9DBB;padding-inline-start:12px;border-inline-start:2px solid var(--accent)}
+.hstats b{display:block;font:800 28px var(--display);letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums}
+.stage{position:relative;height:520px}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%}
+.hud{position:absolute;padding:11px 13px;background:rgba(10,20,37,.9);border:1px solid rgba(255,255,255,.2);border-radius:6px;font-size:12px;color:#EAF0FA;backdrop-filter:blur(8px);animation:bob 6s ease-in-out infinite;max-width:230px;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.hud::before{content:"";position:absolute;top:-1px;left:-1px;width:10px;height:10px;border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+.hud b{display:block;font-size:12.5px;margin-bottom:2px}
+.hud .t{font:600 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;display:inline-block;padding:1px 6px;border-radius:3px;margin-bottom:5px}
+@keyframes bob{50%{transform:translateY(-9px)}}
+.dim{position:absolute;font:500 10px var(--mono);color:#5ee9dc;letter-spacing:.12em}
+.ticker{overflow:hidden;border-block:1px solid var(--line);margin-inline:-16px;padding-block:14px;background:var(--bg2)}
+.ticker .tr{display:flex;gap:44px;width:max-content;animation:mq 42s linear infinite;color:var(--dim);font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.ticker .tr span{display:flex;gap:10px;align-items:center;white-space:nowrap}
+.ticker .tr i{width:7px;height:7px;background:var(--accent)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sheet headers */
+section{padding-block:96px}
+.sheet{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;margin-bottom:46px}
+.sheet .kick{font-size:12px;color:var(--ink)}
+.sheet h2{font:800 clamp(32px,4.4vw,56px)/1.02 var(--display);letter-spacing:-.04em;margin-top:12px;max-width:760px;text-wrap:balance}
+.sheet p.sub{font-size:18px;color:var(--muted);max-width:620px;margin-top:14px}
+.tb{border:1px solid var(--line2);font:500 10.5px var(--mono);letter-spacing:.08em;color:var(--dim);text-transform:uppercase;display:grid;grid-template-columns:auto auto;min-width:210px}
+.tb div{padding:7px 12px;border-bottom:1px solid var(--line);border-inline-end:1px solid var(--line)}
+.tb div:nth-child(2n){border-inline-end:0;color:var(--text)}
+.tb div:nth-last-child(-n+2){border-bottom:0}
+.band{background:var(--bg2);margin-inline:-16px;padding-inline:16px;border-block:1px solid var(--line)}
+
+/* crop-mark card */
+.cm{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:6px}
+.cm::before,.cm::after{content:"";position:absolute;width:12px;height:12px;pointer-events:none;transition:all .3s}
+.cm::before{top:-1px;left:-1px;border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+.cm::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--teal);border-right:2px solid var(--teal)}
+.cm:hover::before,.cm:hover::after{width:22px;height:22px}
+
+/* before after */
+.ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.ba .col{padding:28px}
+.ba h3{font:700 22px var(--display);letter-spacing:-.02em;margin-bottom:16px;display:flex;gap:10px;align-items:center}
+.ba ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.ba li{display:flex;gap:12px;font-size:15.5px;color:var(--muted)}
+.ba li svg{margin-top:3px;width:18px;height:18px}
+.ba .bad li svg{color:var(--bad)}.ba .ok li svg{color:var(--teal)}
+.ba .ok{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.ba .ok li{color:var(--text)}
+
+/* tour */
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{padding:10px 15px;border-radius:6px;border:1px solid var(--line2);background:var(--paper);cursor:pointer;font-weight:600;font-size:14px;color:var(--muted);transition:all .2s;display:flex;gap:8px;align-items:center}
+.tabs button.on{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.showcase{margin-top:22px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:44px;align-items:center;padding:38px;min-height:460px}
+.showcase h3{font:800 clamp(26px,3vw,34px)/1.1 var(--display);letter-spacing:-.035em}
+.showcase p{color:var(--muted);margin-top:12px}
+.ticks{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
+.ticks li{display:flex;gap:10px;font-size:15.5px}
+.ticks svg{color:var(--teal);margin-top:4px;width:18px;height:18px}
+.pane{animation:rise .5s both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.mock{position:relative;border-radius:12px;background:var(--mock);border:1px solid var(--mline);box-shadow:var(--shadow);overflow:hidden;color:#EAF0FA;font-size:12px;direction:ltr}
+.mbar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--mline);color:#9DABC6;font:500 10.5px var(--mono);letter-spacing:.05em}
+.mbar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)}.mbar span{margin-inline-start:10px}
+.mbody{padding:14px}
+.mk{display:grid;gap:10px}.mk4{grid-template-columns:repeat(4,1fr)}
+.mt{background:rgba(255,255,255,.05);border:1px solid var(--mline);border-radius:8px;padding:10px 12px}
+.mt small{display:block;color:#9DABC6;font-size:10.5px}.mt b{font:700 19px var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.chip{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:99px}
+.c-g{color:#34D399;background:rgba(52,211,153,.14)}.c-w{color:#FBBF24;background:rgba(251,191,36,.14)}.c-b{color:#FB7185;background:rgba(251,113,133,.14)}.c-t{color:#4FE3D6;background:rgba(34,211,197,.14)}
+
+/* playground */
+.play{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:20px}
+.ctl{padding:24px;display:flex;flex-direction:column;gap:16px}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted);font-weight:600}
+.inp{padding:11px 12px;border-radius:7px;border:1px solid var(--line2);background:var(--paper2);color:var(--text);font:inherit;width:100%;outline:none}
+.inp:focus{box-shadow:0 0 0 3px rgba(34,211,197,.35);border-color:var(--teal)}
+select.inp option{background:var(--bg);color:var(--text)}
+.seg{display:flex;gap:4px;padding:3px;border:1px solid var(--line2);border-radius:8px;background:var(--paper)}
+.seg button{flex:1;border:0;background:none;padding:8px 6px;border-radius:6px;font-weight:600;font-size:13px;color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--paper2);color:var(--text);box-shadow:0 1px 6px rgba(0,0,0,.2)}
+.out{min-height:430px}
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px;border-bottom:1px solid var(--mline)}
+.ps{display:flex;gap:8px;align-items:center;padding:8px 10px;border:1px solid var(--mline);border-radius:6px;color:#8E9DBB;font-size:11px;transition:all .3s}
+.ps .d{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.22);flex:none;display:grid;place-items:center;font-size:9px;color:#06211f}
+.ps.run{color:#fff;border-color:var(--accent)}.ps.run .d{border-color:var(--accent);border-right-color:transparent;animation:rot .8s linear infinite}
+.ps.ok{color:#fff}.ps.ok .d{background:#22D3C5;border-color:#22D3C5}
+@keyframes rot{to{transform:rotate(360deg)}}
+.rtxt{padding:18px 18px 6px;font-size:14px;line-height:1.7;color:#C6D2E8;min-height:120px}
+.rtxt b.h{display:block;font:700 18px var(--display);color:#fff;letter-spacing:-.02em;margin-bottom:6px}
+.caret::after{content:"";display:inline-block;width:2px;height:1em;background:var(--accent);margin-inline-start:2px;vertical-align:-2px;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.rcards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px 18px 18px;transition:opacity .5s}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.bc{padding:22px;display:flex;flex-direction:column;gap:8px;transition:transform .25s}
+.bc:hover{transform:translateY(-4px)}
+.bc.w2{grid-column:span 2}
+.bc .ico{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;background:rgba(255,122,26,.13);color:var(--ink);margin-bottom:8px}
+.bc:nth-child(even) .ico{background:rgba(34,211,197,.13);color:var(--tink)}
+.bc h3{font:700 18px var(--display);letter-spacing:-.02em}
+.bc p{color:var(--muted);font-size:14.5px}
+.bc .tag{position:absolute;top:16px;inset-inline-end:16px;font:600 10px var(--mono);letter-spacing:.1em;color:var(--dim);border:1px solid var(--line2);padding:1px 7px;border-radius:3px}
+.bc .viz{margin-top:auto;padding-top:10px}
+
+/* roles */
+.roles{display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px}
+.rl{display:flex;flex-direction:column;gap:6px}
+.rl button{text-align:start;padding:14px 16px;border-radius:6px;border:1px solid var(--line);background:var(--paper);cursor:pointer;display:flex;gap:12px;align-items:center;font-weight:600;color:var(--muted);transition:all .2s}
+.rl button small{display:block;font-weight:400;font-size:12.5px;color:var(--dim)}
+.rl button.on{border-color:var(--accent);color:var(--text);background:var(--paper2);box-shadow:inset 3px 0 0 var(--accent)}
+.rv{padding:30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:30px;align-items:center}
+.rv h3{font:800 26px/1.1 var(--display);letter-spacing:-.03em}
+.rv p{color:var(--muted);margin-top:10px}
+
+/* roi */
+.roi{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.roi .ctl{gap:20px}
+.sl .row{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:6px;color:var(--muted)}
+.sl .row b{color:var(--text);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);height:24px}
+.res{padding:30px;display:flex;flex-direction:column;justify-content:center;gap:18px;background:linear-gradient(135deg,rgba(255,122,26,.14),rgba(34,211,197,.07)),var(--paper)}
+.res .big{font:800 clamp(44px,6vw,72px)/1 var(--display);letter-spacing:-.05em;color:var(--accent);font-variant-numeric:tabular-nums}
+.res .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.res .row2 div{padding:14px;border:1px solid var(--line);border-radius:6px;background:var(--paper2);font-size:13px;color:var(--muted)}
+.res .row2 b{display:block;font:700 22px var(--display);color:var(--text);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+
+/* phone */
+.phonewrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:50px;align-items:center}
+.phone{width:290px;margin:0 auto;border-radius:38px;padding:11px;background:#111B30;border:1px solid rgba(255,255,255,.22);box-shadow:var(--shadow);direction:ltr}
+.phone .scr{border-radius:28px;background:#0A1425;color:#EAF0FA;overflow:hidden;height:540px;display:flex;flex-direction:column;position:relative}
+.phone .nt{width:90px;height:22px;background:#111B30;border-radius:0 0 14px 14px;margin:0 auto}
+.ph-h{padding:10px 16px;border-bottom:1px solid var(--mline);display:flex;gap:10px;align-items:center;font-size:12.5px}
+.msgs{flex:1;padding:12px;display:flex;flex-direction:column;gap:9px;overflow:hidden}
+.bub{max-width:88%;padding:8px 10px;border-radius:12px;font-size:12px;line-height:1.45;animation:rise .45s both}
+.bub.me{align-self:flex-end;background:#1d4d46;border-end-end-radius:3px}
+.bub.ai{background:rgba(255,255,255,.07);border:1px solid var(--mline);border-end-start-radius:3px}
+.bub .im{height:74px;border-radius:7px;margin-bottom:6px;background:repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 2px,transparent 2px 18px),linear-gradient(180deg,#8fa1b5,#c8b49a 60%,#5c5147)}
+.bub .meta{display:block;color:#4FE3D6;font:600 10px var(--mono);margin-top:4px;letter-spacing:.04em}
+.ph-f{padding:10px;border-top:1px solid var(--mline);display:flex;gap:8px;align-items:center;font-size:11.5px;color:#8E9DBB}
+.fl{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.fl li{display:flex;gap:14px;padding:14px 16px}
+.fl svg{color:var(--accent);margin-top:2px}.fl b{display:block}.fl span{color:var(--muted);font-size:14.5px}
+
+/* connectors */
+.cloud{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.cloud span{padding:10px 15px;border-radius:6px;background:var(--paper);border:1px solid var(--line);font-weight:600;font-size:14px;display:flex;gap:9px;align-items:center}
+.cloud span i{width:9px;height:9px;border-radius:2px;background:var(--c)}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px;align-items:center}
+
+/* saudi */
+.chk{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.chk li{display:flex;gap:12px;padding:14px 16px}
+.chk b{display:block}.chk span{color:var(--muted);font-size:14.5px}.chk svg{color:var(--accent);margin-top:2px}
+.lt{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line2);border-radius:8px;margin-bottom:14px;background:var(--paper)}
+.lt button{border:0;background:none;padding:7px 14px;border-radius:6px;font-weight:600;cursor:pointer;color:var(--muted)}
+.lt button.on{background:var(--accent);color:var(--on-accent)}
+.bi .r{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--mline);color:#9DABC6}
+.bi .r b{color:#EAF0FA;text-align:end}
+.bi h4{font:700 19px var(--display);margin-bottom:8px;color:#fff}
+
+/* security + timeline */
+.sec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sec .cm{padding:22px}
+.sec h3{font:700 17px var(--display);margin:10px 0 4px;letter-spacing:-.02em}.sec p{color:var(--muted);font-size:14.5px}
+.sec svg{color:var(--tink)}
+.tl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative;margin-top:8px}
+.tl::before{content:"";position:absolute;top:19px;left:20px;right:20px;height:2px;background:repeating-linear-gradient(90deg,var(--line2) 0 8px,transparent 8px 14px)}
+.tl .st{position:relative;padding:0 18px 0 0}
+.tl .n{width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font:700 14px var(--mono);position:relative;z-index:1;box-shadow:0 0 0 6px var(--bg)}
+.tl .wk{font-size:11.5px;color:var(--ink);margin-top:16px}
+.tl h3{font:700 19px var(--display);letter-spacing:-.02em;margin-top:4px}
+.tl p{color:var(--muted);font-size:14.5px;margin-top:6px}
+
+/* pricing */
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+.plan{padding:30px;display:flex;flex-direction:column;gap:16px}
+.plan.hot{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}
+.plan .tg{position:absolute;top:-12px;inset-inline-start:24px;background:var(--accent);color:var(--on-accent);font:700 10.5px var(--mono);letter-spacing:.1em;padding:3px 11px;border-radius:3px}
+.plan h3{font:700 21px var(--display)}.plan .pr{font:800 36px var(--display);letter-spacing:-.04em}.plan .pr small{font:500 14px Inter;color:var(--muted);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:9px;font-size:15px;color:var(--muted);flex:1}
+.plan li{display:flex;gap:9px}.plan li svg{width:17px;height:17px;color:var(--teal);margin-top:4px}
+
+/* faq + cta + footer */
+.faq{display:grid;gap:10px;max-width:860px}
+.q{border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}
+.q button{all:unset;box-sizing:border-box;width:100%;padding:18px 20px;display:flex;justify-content:space-between;gap:12px;cursor:pointer;font:700 17px var(--display);letter-spacing:-.01em}
+.q button:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.q button svg{transition:transform .3s;flex:none;color:var(--accent)}.q.on button svg{transform:rotate(45deg)}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}.q.on .a{grid-template-rows:1fr}
+.q .a div{overflow:hidden;color:var(--muted);padding-inline:20px}.q.on .a div{padding-bottom:18px}
+.final{position:relative;margin-block:30px 70px;padding:70px 36px;background:#070D1A;color:#EAF0FA;border:1px solid rgba(255,255,255,.14);border-radius:8px;overflow:hidden}
+.final::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(34,211,197,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,197,.1) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(circle at 80% 50%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(circle at 80% 50%,#000 10%,transparent 70%)}
+.final>*{position:relative}
+.final h2{font:800 clamp(34px,5vw,62px)/1 var(--display);letter-spacing:-.045em;max-width:720px;text-wrap:balance}
+.final p{color:#A9B7D2;margin-top:16px;max-width:520px;font-size:18px}
+.form{display:flex;gap:10px;margin-top:30px;flex-wrap:wrap}
+.form input{padding:15px 16px;border-radius:9px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;min-width:min(320px,100%);font:inherit;outline:none}
+.form input::placeholder{color:#93A1BC}.form input:focus{box-shadow:0 0 0 3px rgba(34,211,197,.4);border-color:#22D3C5}
+.thanks{margin-top:14px;color:#4FE3D6;font-weight:600;min-height:24px}
+footer{border-top:1px solid var(--line);padding-block:44px;margin-inline:-16px;padding-inline:16px}
+footer .in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:30px;color:var(--muted);font-size:14.5px}
+footer h5{margin:0 0 10px;font:600 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text)}
+footer a{display:block;padding:3px 0}footer a:hover{color:var(--text)}
+.fine{max-width:1200px;margin:28px auto 0;color:var(--dim);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.js .reveal{animation:lift .7s both;animation-play-state:paused}.js .reveal.vis{animation-play-state:running}
+@keyframes lift{from{transform:translateY(18px)}to{transform:none}}
+
+@media (max-width:1040px){
+  .hero .wrap,.showcase,.split,.play,.roi,.phonewrap,.rv,.ba{grid-template-columns:minmax(0,1fr)}
+  .hero .wrap{min-height:0;padding-block:50px 60px}.stage{height:420px}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .roles{grid-template-columns:minmax(0,1fr)}.rl{flex-direction:row;overflow-x:auto}.rl button{min-width:180px}
+  .sec,.plans{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}.tl::before{display:none}
+  .links{display:none}.burger{display:grid}
+  .mnav.on{display:grid;gap:4px;padding:12px 0 4px;max-width:1200px;margin:0 auto}.mnav a{padding:12px 8px;font-weight:600}
+  .sheet{grid-template-columns:minmax(0,1fr)}.tb{display:none}
+  footer .in{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  section{padding-block:60px}
+  .bento,.sec,.plans,.tl{grid-template-columns:minmax(0,1fr)}.bc.w2{grid-column:auto}
+  .showcase{padding:20px}.mk4,.rcards{grid-template-columns:repeat(2,1fr)}.pipe{grid-template-columns:repeat(2,1fr)}
+  .hud,.dim{display:none}.stage{height:320px}
+  .nav .hide-s{display:none}
+  .final{padding:44px 22px}
+  .res .row2{grid-template-columns:1fr}
+}
+
+/* dashboard */
+.dash{overflow:hidden}
+.dtop{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--mline);flex-wrap:wrap}
+.dtop .ttl{font:700 16px var(--display);letter-spacing:-.02em}
+.dtop .sub2{color:#9DABC6;font-size:12px}
+.dseg{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--mline);border-radius:7px;background:rgba(255,255,255,.04)}
+.dseg button{border:0;background:none;padding:5px 11px;border-radius:5px;font:600 12px Inter;color:#9DABC6;cursor:pointer}
+.dseg button.on{background:rgba(255,255,255,.12);color:#fff}
+.fchips{display:flex;gap:6px;flex-wrap:wrap}
+.fchips button{border:1px solid var(--mline);background:transparent;color:#B5C2DC;padding:5px 11px;border-radius:99px;font:600 11.5px Inter;cursor:pointer;display:flex;gap:6px;align-items:center}
+.fchips button.on{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)}
+.fchips i{width:8px;height:8px;border-radius:50%}
+.dbody{padding:14px;display:grid;gap:12px}
+.dk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.dk .mt{padding:14px}.dk .mt b{font-size:30px}.dk .mt small{font-size:12px}
+.dk .sp svg{display:block;width:100%;height:30px;margin-top:6px}
+.dr2{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px}
+.dr3{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.8fr) minmax(0,1fr);gap:12px}
+.dp{background:rgba(255,255,255,.04);border:1px solid var(--mline);border-radius:10px;padding:14px;min-width:0}
+.dp h4{font:700 13.5px Inter;margin:0 0 10px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.dmap{position:relative}.dmap svg{width:100%;height:auto;display:block}
+.ksa{fill:rgba(34,211,197,.09);stroke:#22D3C5;stroke-width:1.4;stroke-linejoin:round;filter:drop-shadow(0 0 10px rgba(34,211,197,.35))}
+.geo{fill:#6E7B97;font:600 9px Inter;letter-spacing:.2em}
+.pin{cursor:pointer;transition:opacity .3s}.pin.dim{opacity:.18}
+.pin .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(3.2);opacity:0}}
+.pin text{fill:#EAF0FA;font:600 11px Inter;paint-order:stroke;stroke:#0A1425;stroke-width:3px}
+.mtip{position:absolute;pointer-events:none;z-index:4;min-width:190px;padding:10px 12px;border-radius:8px;background:#111B30;border:1px solid rgba(255,255,255,.22);box-shadow:0 14px 36px rgba(0,0,0,.5);opacity:0;transform:translate(-50%,-112%);transition:opacity .15s;font-size:12px}
+.mtip.on{opacity:1}.mtip b{display:block;margin-bottom:4px;font-size:13px}.mtip .r{display:flex;justify-content:space-between;gap:14px;color:#9DABC6}.mtip .r span:last-child{color:#EAF0FA;font-weight:600}
+.dins{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.dins li{display:flex;gap:10px;padding:10px 11px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--mline);min-height:62px;font-size:12.5px;line-height:1.45}
+.dins .sv{width:8px;height:8px;border-radius:50%;margin-top:6px;flex:none}
+.dins small{display:block;color:#9DABC6;font-weight:600;font-size:11px}
+.dfeed{list-style:none;margin:0;padding:0;max-height:250px;overflow:hidden}
+.dfeed li{display:flex;gap:10px;padding:8px 2px;border-bottom:1px solid var(--mline);font-size:12.5px;animation:feedin .5s both}
+.dfeed li:last-child{border:0}.dfeed small{display:block;color:#7f8dab;font-size:11px}
+.dfeed .ic{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:rgba(255,255,255,.07);color:#4FE3D6;flex:none}
+.dfeed .ic .i{width:15px;height:15px}
+@keyframes feedin{from{opacity:0;transform:translateY(-10px);background:rgba(255,122,26,.14)}to{opacity:1;transform:none}}
+.dch{height:190px;position:relative}.dch svg{width:100%;height:100%;display:block;overflow:visible}
+.dch .tip{position:absolute;top:6px;pointer-events:none;background:#111B30;border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:7px 10px;font-size:11.5px;opacity:0;transition:opacity .15s;min-width:110px}
+.dch .tip.on{opacity:1}.dch .tip .r{display:flex;justify-content:space-between;gap:10px;color:#9DABC6}.dch .tip .r span:last-child{color:#fff;font-weight:600}
+.dn{display:flex;flex-direction:column;align-items:center;gap:10px}
+.dn .ring{position:relative;width:150px;height:150px}.dn .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dn .ring circle{transition:stroke-dasharray 1.1s cubic-bezier(.2,.7,.2,1)}
+.dn .mid{position:absolute;inset:0;display:grid;place-content:center;text-align:center}.dn .mid b{font:800 18px var(--display)}.dn .mid span{font-size:10.5px;color:#9DABC6}
+.dn .lg{display:flex;flex-wrap:wrap;gap:6px 12px;justify-content:center;font-size:11px;color:#B5C2DC}.dn .lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-inline-end:5px}
+.dpd{display:none;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--accent);border-radius:10px;background:rgba(255,122,26,.08);flex-wrap:wrap}
+.dpd.on{display:flex}.dpd b{font:700 15px var(--display)}.dpd .kv{display:flex;gap:22px;flex-wrap:wrap;color:#9DABC6;font-size:12px}.dpd .kv b{display:block;color:#fff;font:700 15px Inter}
+@media (max-width:1040px){.dr2,.dr3{grid-template-columns:minmax(0,1fr)}.dk{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.dk .mt b{font-size:24px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 13h6M9 17h4"/></symbol>
+<symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v4a6 6 0 0 1-12 0zM12 18v3"/></symbol>
+<symbol id="i-cam" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></symbol>
+<symbol id="i-kan" viewBox="0 0 24 24"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="10" rx="1.5"/><rect x="17" y="4" width="4" height="13" rx="1.5"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+<symbol id="i-chk" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 10h4l4 3v3h-8"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+<symbol id="i-hard" viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0M2 16h20v3H2zM12 5v4"/></symbol>
+<symbol id="i-snag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11H3z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.6 4 2.4 4 6"/></symbol>
+<symbol id="i-bld" viewBox="0 0 24 24"><path d="M4 21V6l8-3 8 3v15M9 21v-4h6v4M8 9h2M14 9h2M8 13h2M14 13h2"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+<symbol id="i-log" viewBox="0 0 24 24"><path d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9a4.5 4.5 0 0 1 0 9z"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></symbol>
+<symbol id="i-bars" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5v.1"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></symbol>
+</defs></svg>
+
+<div class="prog" id="prog"></div>
+<header class="nav"><div class="in">
+  <a href="#top" class="logo"><svg viewBox="0 0 32 32"><path d="M16 2l12 7v14l-12 7L4 23V9z" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linejoin="round"/><path d="M10 21V14l6-3.5 6 3.5v7" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M16 21v-5" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/></svg><span>Site<b>IQ</b></span></a>
+  <nav class="links"><a href="#dashboard">Dashboard</a><a href="#tour">Product</a><a href="#try">Try it</a><a href="#roles">By role</a><a href="#roi">ROI</a><a href="#mobile">Field app</a><a href="#connect">Connectors</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+  <div class="sp"></div>
+  <button class="icb" id="theme" aria-label="Toggle theme"><svg class="i"><use href="#i-sun"/></svg></button>
+  <a class="btn hide-s" href="#roi">Calculate ROI</a>
+  <a class="btn pri hide-s" href="#demo">Request demo</a>
+  <button class="icb burger" id="burger" aria-label="Menu"><svg class="i"><use href="#i-menu"/></svg></button>
+</div>
+<div class="mnav" id="mnav"><a href="#dashboard">Dashboard</a><a href="#tour">Product</a><a href="#try">Try it</a><a href="#roles">By role</a><a href="#roi">ROI</a><a href="#mobile">Field app</a><a href="#connect">Connectors</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#demo">Request demo</a></div></header>
+
+<div class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="tagline mono"><i></i>AI reporting for construction sites</span>
+    <h1>Build smarter. <em>Report instantly.</em></h1>
+    <p class="lead">SiteIQ pulls your schedules, sensors, cameras and site messages into one live model, then writes the daily, weekly and executive reports for you. Delays show up days before they reach the programme.</p>
+    <div class="cta"><a class="btn pri lg" href="#demo">Request a demo</a><a class="btn dk lg" href="#dashboard">See the dashboard</a></div>
+    <div class="hstats"><div><b data-n="12" data-s="+">0</b>data connectors</div><div><b data-n="45" data-s=" sec">0</b>to a draft report</div><div><b data-n="6" data-s="">0</b>live modules</div></div>
+  </div>
+  <div class="stage" id="stage">
+    <canvas id="wire"></canvas>
+    <span class="dim" style="top:6px;inset-inline-start:6px">24.7136° N · 46.6753° E</span>
+    <span class="dim" style="bottom:8px;inset-inline-end:6px">LEVEL 14 / 38 · 68%</span>
+    <div class="hud" style="top:36px;inset-inline-end:0;animation-delay:.3s"><span class="t" style="background:rgba(251,113,133,.2);color:#FB7185">Safety alert</span><b>No vest detected</b>Excavation zone · CAM-02</div>
+    <div class="hud" style="top:46%;inset-inline-start:-8px;animation-delay:1.4s"><span class="t" style="background:rgba(255,122,26,.2);color:#FF9B50">AI insight</span><b>Rebar 4 days late</b>L16–L20 pour at risk. Resequence to recover 2 days.</div>
+    <div class="hud" style="bottom:34px;inset-inline-end:14px;animation-delay:2.2s"><span class="t" style="background:rgba(34,211,197,.2);color:#4FE3D6">Report ready</span><b>Weekly progress, 5–11 Nov</b>Written in 41 seconds</div>
+  </div>
+</div></div>
+<div class="ticker" aria-hidden="true"><div class="tr" id="tick"></div></div>
+
+<section class="wrap" id="dashboard">
+  <div class="sheet"><div><span class="kick mono">A-01 / Dashboard</span><h2>Your whole portfolio on one live screen</h2><p class="sub">This is the executive dashboard from the platform. Filter by status, switch the period, hover a pin and click it for the project.</p></div><div class="tb"><div>Sheet</div><div>01 / 12</div><div>View</div><div>LIVE</div><div>Rev</div><div>C</div></div></div>
+  <div class="mock dash" id="dashapp">
+    <div class="dtop"><div><div class="ttl">Executive dashboard</div><div class="sub2">6 active sites · SAR 1.83B under management</div></div><div class="sp"></div><div class="fchips" id="dchips"></div><div class="dseg" id="drange"><button class="on" data-r="7D">7D</button><button data-r="30D">30D</button><button data-r="QTD">QTD</button></div></div>
+    <div class="dbody">
+      <div class="dk" id="dk"></div>
+      <div class="dpd" id="dpd"></div>
+      <div class="dr2">
+        <div class="dp"><h4>Portfolio map <span class="chip c-t">Hover or click a pin</span></h4><div class="dmap" id="dmap"></div></div>
+        <div class="dp"><h4><span style="display:flex;gap:7px;align-items:center;color:#FF9B50"><svg class="i" style="width:15px;height:15px"><use href="#i-spark"/></svg><span style="color:#fff">AI Insights</span></span><span class="chip c-t">Updated 2 min ago</span></h4><ul class="dins" id="dins"></ul></div>
+      </div>
+      <div class="dr3">
+        <div class="dp"><h4>Progress vs plan <span style="display:flex;gap:10px;font-weight:500;font-size:11px;color:#9DABC6"><span style="color:#9DABC6">Plan</span><span style="color:#22D3C5">Actual</span><span style="color:#FF9B50">Forecast</span></span></h4><div class="dch" id="dch"></div></div>
+        <div class="dp"><h4>Budget split</h4><div class="dn"><div class="ring" id="dring"></div><div class="lg" id="dlg"></div></div></div>
+        <div class="dp"><h4><span style="display:flex;gap:8px;align-items:center"><i style="width:8px;height:8px;border-radius:50%;background:#34D399;box-shadow:0 0 0 3px rgba(52,211,153,.25)"></i>Live activity</span></h4><ul class="dfeed" id="dfeed"></ul></div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:12.5px;color:var(--dim);margin-top:14px">Sample data. The full platform adds project pages, report generation, connectors, live site, cost control and tasks.</p>
+</section>
+
+<section class="wrap" id="problem">
+  <div class="sheet"><div><span class="kick mono">A-02 / Why SiteIQ</span><h2>Reporting eats the week. Problems still arrive late.</h2><p class="sub">Site teams copy numbers between spreadsheets, WhatsApp threads and scheduling tools. By the time leadership sees a delay, the pour has already moved.</p></div><div class="tb"><div>Sheet</div><div>02 / 12</div><div>Scale</div><div>NTS</div><div>Rev</div><div>C</div></div></div>
+  <div class="ba">
+    <div class="cm bad col reveal"><h3><svg class="i" style="color:var(--bad)"><use href="#i-x"/></svg>Today</h3><ul>
+      <li><svg class="i"><use href="#i-x"/></svg>6 hours a week per project assembling reports by hand</li>
+      <li><svg class="i"><use href="#i-x"/></svg>Nine tools with nine versions of the truth</li>
+      <li><svg class="i"><use href="#i-x"/></svg>Delays reach leadership about three days late</li>
+      <li><svg class="i"><use href="#i-x"/></svg>Safety breaches found when someone reviews footage</li>
+      <li><svg class="i"><use href="#i-x"/></svg>Cost overruns spotted at month end</li></ul></div>
+    <div class="cm ok col reveal"><h3><svg class="i" style="color:var(--teal)"><use href="#i-chk"/></svg>With SiteIQ</h3><ul>
+      <li><svg class="i"><use href="#i-chk"/></svg>A draft report in under a minute, reviewed and sent in five</li>
+      <li><svg class="i"><use href="#i-chk"/></svg>One live model fed by every connected source</li>
+      <li><svg class="i"><use href="#i-chk"/></svg>Slippage predicted with the cause explained</li>
+      <li><svg class="i"><use href="#i-chk"/></svg>Hazards flagged on camera as they happen</li>
+      <li><svg class="i"><use href="#i-chk"/></svg>A rolling forecast with what-if sliders</li></ul></div>
+  </div>
+  <p style="font-size:12.5px;color:var(--dim);margin-top:14px">Figures are illustrative for the concept. Replace them with your own benchmarks before external use.</p>
+</section>
+
+<div class="band"><section class="wrap" id="tour">
+  <div class="sheet"><div><span class="kick mono">A-03 / Product tour</span><h2>Eight modules, one live picture of every site</h2></div><div class="tb"><div>Sheet</div><div>03 / 12</div><div>Modules</div><div>08</div><div>Rev</div><div>C</div></div></div>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="cm showcase" id="showcase" aria-live="polite"></div>
+</section></div>
+
+<section class="wrap" id="try">
+  <div class="sheet"><div><span class="kick mono">A-04 / Try it</span><h2>Generate a site report right here</h2><p class="sub">Pick a project and report type. This runs on sample data, the same way the platform does.</p></div><div class="tb"><div>Sheet</div><div>04 / 12</div><div>Data</div><div>SAMPLE</div><div>Rev</div><div>C</div></div></div>
+  <div class="play">
+    <div class="cm ctl">
+      <label class="fld">Project<select class="inp" id="pp"><option value="rt2">Riyadh Tower Phase 2</option><option value="noor">Al-Noor Residential, Jeddah</option><option value="dlp">Dammam Logistics Park</option></select></label>
+      <div class="fld">Report type<div class="seg" id="pt"><button data-v="daily">Daily</button><button data-v="weekly" class="on">Weekly</button><button data-v="exec">Executive</button></div></div>
+      <div class="fld">Language<div class="seg" id="pl"><button data-v="en" class="on">English</button><button data-v="ar">العربية</button></div></div>
+      <button class="btn pri" id="pgo"><svg class="i"><use href="#i-spark"/></svg><span>Generate report</span></button>
+      <p style="font-size:12.5px;color:var(--dim)">Nothing is sent anywhere. Text is written in your browser from sample figures.</p>
+    </div>
+    <div class="mock out"><div class="mbar"><i></i><i></i><i></i><span id="pttl">Report preview</span></div>
+      <div class="pipe" id="ppipe"></div><div class="rtxt" id="ptxt">Choose a project and press Generate.</div><div class="rcards" id="pcards" style="opacity:0"></div></div>
+  </div>
+</section>
+
+<div class="band"><section class="wrap" id="all">
+  <div class="sheet"><div><span class="kick mono">A-05 / Capabilities</span><h2>Sixteen capabilities that replace the weekly scramble</h2><p class="sub">Each one works on the same shared data, so a change on site shows up everywhere at once.</p></div><div class="tb"><div>Sheet</div><div>05 / 12</div><div>Items</div><div>16</div><div>Rev</div><div>C</div></div></div>
+  <div class="bento" id="bento"></div>
+</section></div>
+
+<section class="wrap" id="roles">
+  <div class="sheet"><div><span class="kick mono">A-06 / By role</span><h2>Everyone gets the view they need</h2><p class="sub">Same data, five different front doors. Pick a role.</p></div><div class="tb"><div>Sheet</div><div>06 / 12</div><div>Roles</div><div>05</div><div>Rev</div><div>C</div></div></div>
+  <div class="roles"><div class="rl" id="rl"></div><div class="cm rv" id="rv"></div></div>
+</section>
+
+<div class="band"><section class="wrap" id="roi">
+  <div class="sheet"><div><span class="kick mono">A-07 / Return on time</span><h2>What would your team get back?</h2><p class="sub">Move the sliders to match your portfolio. The result is an estimate from your own inputs.</p></div><div class="tb"><div>Sheet</div><div>07 / 12</div><div>Basis</div><div>INPUTS</div><div>Rev</div><div>C</div></div></div>
+  <div class="roi">
+    <div class="cm ctl">
+      <div class="sl"><div class="row"><span>Active projects</span><b id="rv1">6</b></div><input type="range" id="r1" min="1" max="40" value="6"></div>
+      <div class="sl"><div class="row"><span>Reports per project each week</span><b id="rv2">3</b></div><input type="range" id="r2" min="1" max="10" value="3"></div>
+      <div class="sl"><div class="row"><span>Hours to produce one report</span><b id="rv3">2.0</b></div><input type="range" id="r3" min="0.5" max="8" step="0.5" value="2"></div>
+      <div class="sl"><div class="row"><span>Loaded cost per hour (SAR)</span><b id="rv4">140</b></div><input type="range" id="r4" min="50" max="400" step="10" value="140"></div>
+      <div class="sl"><div class="row"><span>Share of the work SiteIQ automates</span><b id="rv5">70%</b></div><input type="range" id="r5" min="30" max="90" step="5" value="70"></div>
+    </div>
+    <div class="cm res"><span class="mono" style="font-size:12px;color:var(--ink)">Estimated yearly saving</span><div class="big" id="rbig">SAR 0</div>
+      <div class="row2"><div>Hours back each month<b id="rh">0</b></div><div>Working weeks back each year<b id="rw">0</b></div></div>
+      <p style="font-size:13px;color:var(--dim)">Illustrative maths: projects × reports × hours × 4.33 weeks × automation share. Excludes licence cost and the value of earlier delay detection.</p></div>
+  </div>
+</section></div>
+
+<section class="wrap" id="mobile">
+  <div class="sheet"><div><span class="kick mono">A-08 / Field app</span><h2>Reports start on site, not at a desk</h2></div><div class="tb"><div>Sheet</div><div>08 / 12</div><div>Device</div><div>MOBILE</div><div>Rev</div><div>C</div></div></div>
+  <div class="phonewrap">
+    <div class="phone"><div class="scr"><div class="nt"></div><div class="ph-h"><span class="mono" style="color:var(--teal);font-size:11px">Site team</span><b>Riyadh Tower · L14</b></div><div class="msgs" id="pmsgs"></div><div class="ph-f"><svg class="i" style="width:16px;height:16px"><use href="#i-cam"/></svg>Send a photo or note<span style="margin-inline-start:auto;color:#34D399;display:flex;gap:4px;align-items:center"><svg class="i" style="width:13px;height:13px"><use href="#i-wifi"/></svg>Synced</span></div></div></div>
+    <div><ul class="fl">
+      <li class="cm"><svg class="i"><use href="#i-chat"/></svg><div><b>Send updates the way foremen already do</b><span>Photos and short notes by WhatsApp or the app. SiteIQ files each one to the right level, trade and activity.</span></div></li>
+      <li class="cm"><svg class="i"><use href="#i-cam"/></svg><div><b>AI reads the photo</b><span>It tags what is in frame, checks pour coverage and PPE, and adds the result to the daily report.</span></div></li>
+      <li class="cm"><svg class="i"><use href="#i-wifi"/></svg><div><b>Works when the signal does not</b><span>Capture offline in the basement or on a remote site. Everything syncs when the phone reconnects.</span></div></li>
+      <li class="cm"><svg class="i"><use href="#i-snag"/></svg><div><b>Snag and sign off in place</b><span>Raise a defect, assign an owner and close it with a photo, all from the same thread.</span></div></li></ul></div>
+  </div>
+</section>
+
+<div class="band"><section class="wrap" id="connect">
+  <div class="sheet"><div><span class="kick mono">A-09 / Connectors</span><h2>Bring every source into one place</h2><p class="sub">Prebuilt connectors plus an open API for anything custom.</p></div><div class="tb"><div>Sheet</div><div>09 / 12</div><div>Sources</div><div>12+</div><div>Rev</div><div>C</div></div></div>
+  <div class="cloud" id="cloud"></div>
+  <div class="mock" style="max-width:820px"><div class="mbar"><i></i><i></i><i></i><span>Data health</span></div><div class="mbody" id="health"></div></div>
+</section></div>
+
+<section class="wrap" id="saudi">
+  <div class="split">
+    <div><div class="sheet" style="margin-bottom:26px;grid-template-columns:minmax(0,1fr)"><div><span class="kick mono">A-10 / Built for the Kingdom</span><h2 style="font-size:clamp(30px,3.8vw,48px)">Arabic where it matters</h2></div></div>
+      <ul class="chk">
+        <li class="cm"><svg class="i"><use href="#i-globe"/></svg><div><b>Full right-to-left layout</b><span>Switch language and the whole interface mirrors, including tables and charts.</span></div></li>
+        <li class="cm"><svg class="i"><use href="#i-coins"/></svg><div><b>SAR and local calendars</b><span>Costs in riyals, with Hijri and Gregorian dates side by side.</span></div></li>
+        <li class="cm"><svg class="i"><use href="#i-sun"/></svg><div><b>Heat and wind aware</b><span>Pour windows, crane limits and summer working hours feed the forecast.</span></div></li>
+        <li class="cm"><svg class="i"><use href="#i-bld"/></svg><div><b>Bilingual reports for clients</b><span>Send the same report in Arabic to the owner and English to the consultant.</span></div></li></ul></div>
+    <div><div class="lt" id="lt"><button class="on" data-l="en">English</button><button data-l="ar">العربية</button></div><div class="mock bi" id="bi" style="padding:24px"></div></div>
+  </div>
+</section>
+
+<div class="band"><section class="wrap" id="security">
+  <div class="sheet"><div><span class="kick mono">A-11 / Governance</span><h2>Control over who sees what</h2><p class="sub">Designed for owners and contractors who share data with many parties. Final hosting and security terms are agreed per customer.</p></div><div class="tb"><div>Sheet</div><div>11 / 12</div><div>Status</div><div>CONCEPT</div><div>Rev</div><div>C</div></div></div>
+  <div class="sec">
+    <div class="cm reveal"><svg class="i"><use href="#i-users"/></svg><h3>Role-based access</h3><p>Executives, engineers, QS and subcontractors each open only the modules and projects they are given.</p></div>
+    <div class="cm reveal"><svg class="i"><use href="#i-log"/></svg><h3>Full audit trail</h3><p>Every edit to a report, cost line or schedule date is logged with who changed it and when.</p></div>
+    <div class="cm reveal"><svg class="i"><use href="#i-key"/></svg><h3>Single sign-on</h3><p>Use your company identity provider so access follows staff joining and leaving.</p></div>
+    <div class="cm reveal"><svg class="i"><use href="#i-cloud"/></svg><h3>Hosting options</h3><p>Cloud or in-Kingdom hosting to be discussed per project, based on client requirements.</p></div>
+    <div class="cm reveal"><svg class="i"><use href="#i-shield"/></svg><h3>Encrypted data</h3><p>Data encrypted in transit and at rest, with scoped API keys for every integration.</p></div>
+    <div class="cm reveal"><svg class="i"><use href="#i-doc"/></svg><h3>Client-safe sharing</h3><p>Share a read-only report link with an owner or consultant, with expiry and view tracking.</p></div>
+  </div>
+</section></div>
+
+<section class="wrap" id="rollout">
+  <div class="sheet"><div><span class="kick mono">A-12 / Rollout</span><h2>Live on your first site in four weeks</h2></div><div class="tb"><div>Sheet</div><div>12 / 12</div><div>Plan</div><div>4 WEEKS</div><div>Rev</div><div>C</div></div></div>
+  <div class="tl">
+    <div class="st reveal"><div class="n">1</div><div class="wk mono">Week 1</div><h3>Connect</h3><p>Link your programme, documents and first data sources. We map fields together.</p></div>
+    <div class="st reveal"><div class="n">2</div><div class="wk mono">Week 2</div><h3>First report</h3><p>Your first AI-drafted weekly report, reviewed by the project manager.</p></div>
+    <div class="st reveal"><div class="n">3</div><div class="wk mono">Week 3</div><h3>Site eyes</h3><p>Cameras, sensors and the field app go live with safety detection switched on.</p></div>
+    <div class="st reveal"><div class="n">4</div><div class="wk mono">Week 4</div><h3>Portfolio</h3><p>Roll out to more sites and open the executive dashboard to leadership.</p></div>
+  </div>
+</section>
+
+<div class="band"><section class="wrap" id="pricing">
+  <div class="sheet"><div><span class="kick mono">Pricing</span><h2>Start with one site. Scale to the portfolio.</h2><p class="sub">Placeholder plans for the concept. Final pricing to be confirmed.</p></div></div>
+  <div class="plans">
+    <div class="cm plan"><h3>Pilot</h3><div class="pr">Free <small>for 60 days</small></div><ul><li><svg class="i"><use href="#i-chk"/></svg>1 project</li><li><svg class="i"><use href="#i-chk"/></svg>3 connectors</li><li><svg class="i"><use href="#i-chk"/></svg>Daily and weekly AI reports</li><li><svg class="i"><use href="#i-chk"/></svg>Field app for one site team</li></ul><a class="btn" href="#demo">Start pilot</a></div>
+    <div class="cm plan hot"><span class="tg">MOST CHOSEN</span><h3>Project</h3><div class="pr">Per site <small>quoted monthly</small></div><ul><li><svg class="i"><use href="#i-chk"/></svg>Unlimited connectors</li><li><svg class="i"><use href="#i-chk"/></svg>Live site AI detection</li><li><svg class="i"><use href="#i-chk"/></svg>Cost control and what-if</li><li><svg class="i"><use href="#i-chk"/></svg>Arabic and English reports</li><li><svg class="i"><use href="#i-chk"/></svg>Role-based access</li></ul><a class="btn pri" href="#demo">Request a quote</a></div>
+    <div class="cm plan"><h3>Enterprise</h3><div class="pr">Custom</div><ul><li><svg class="i"><use href="#i-chk"/></svg>Portfolio dashboards</li><li><svg class="i"><use href="#i-chk"/></svg>SSO and audit trail</li><li><svg class="i"><use href="#i-chk"/></svg>Open API and webhooks</li><li><svg class="i"><use href="#i-chk"/></svg>Dedicated success manager</li></ul><a class="btn" href="#demo">Talk to us</a></div>
+  </div>
+</section></div>
+
+<section class="wrap" id="faq">
+  <div class="sheet"><div><span class="kick mono">Questions</span><h2>What teams ask first</h2></div></div>
+  <div class="faq" id="faqs"></div>
+</section>
+
+<div class="wrap" id="demo"><div class="final">
+  <h2>See your own project in SiteIQ</h2><p>Tell us where to reach you. We will set up a walkthrough using your programme and a sample of your site data.</p>
+  <form class="form" id="dform"><input id="email" type="email" required placeholder="Work email" aria-label="Work email"><button class="btn pri lg" type="submit">Request a demo</button></form>
+  <div class="thanks" id="thanks" aria-live="polite"></div>
+</div></div>
+
+<footer><div class="in">
+  <div><a href="#top" class="logo" style="margin-bottom:10px"><span>Site<b>IQ</b></span></a><p>AI reporting and site intelligence for construction teams.</p></div>
+  <div><h5>Product</h5><a href="#dashboard">Dashboard</a><a href="#tour">Modules</a><a href="#try">Try it</a><a href="#all">Capabilities</a><a href="#pricing">Pricing</a></div>
+  <div><h5>Explore</h5><a href="#roles">By role</a><a href="#roi">ROI calculator</a><a href="#mobile">Field app</a><a href="#connect">Connectors</a></div>
+  <div><h5>Contact</h5><a href="#demo">Request a demo</a><span style="display:block;padding:3px 0">hello@siteiq.example</span></div>
+</div><div class="fine"><span>© 2026 SiteIQ. Concept website with sample content.</span><span>No real customers, certifications or prices are claimed on this page.</span></div></footer>
+
+<script>
+(function(){
+'use strict';
+document.documentElement.classList.add('js');
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const ic=n=>`<svg class="i"><use href="#i-${n}"/></svg>`;
+$('#theme').onclick=()=>{const d=document.documentElement;d.setAttribute('data-theme',getComputedStyle(d).colorScheme==='dark'?'light':'dark')};
+$('#burger').onclick=()=>$('#mnav').classList.toggle('on');$$('#mnav a').forEach(a=>a.onclick=()=>$('#mnav').classList.remove('on'));
+addEventListener('scroll',()=>{const h=document.documentElement;$('#prog').style.width=(scrollY/(h.scrollHeight-innerHeight)*100)+'%'},{passive:true});
+
+/* hero wireframe */
+(function(){const cv=$('#wire'),ctx=cv.getContext('2d');let W,H;const d=Math.min(2,devicePixelRatio||1);const fit=()=>{W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0)};fit();new ResizeObserver(fit).observe(cv);
+const B=[[0,0,3.2,3.2,0,.7,1],[0,0,1.8,1.8,.7,3.6,1],[0,0,1.4,1.4,3.6,5.4,1],[0,0,.8,.8,5.4,6.2,2],[-3.3,1.6,1,1,0,2.4,0],[3.4,-1.7,1.2,1.2,0,3.2,0],[-2.9,-2.2,.9,.9,0,1.6,0],[2.9,2.6,.8,.8,0,1.3,0]],E=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
+function draw(t){requestAnimationFrame(draw);if(!vis||!W)return;ctx.clearRect(0,0,W,H);const th=reduce?.6:t*.00032,ca=Math.cos(th),sa=Math.sin(th),tilt=.42,ct=Math.cos(tilt),st=Math.sin(tilt),sc=Math.min(W,H)*.1,cx=W*.5,cy=H*.5;
+const pr=(x,y,z)=>{const xr=x*ca-z*sa,zr=x*sa+z*ca,yy=(y-3.2)*ct-zr*st,zz=(y-3.2)*st+zr*ct+11,f=11/zz;return[cx+xr*sc*f,cy-yy*sc*f]};
+ctx.lineWidth=1;ctx.strokeStyle='rgba(34,211,197,.16)';for(let i=-7;i<=7;i++){let a=pr(i,0,-7),b=pr(i,0,7);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();a=pr(-7,0,i);b=pr(7,0,i);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke()}
+B.forEach(([bx,bz,w,dd,y0,y1,k])=>{const hw=w/2,hd=dd/2,V=[[-hw,y0,-hd],[hw,y0,-hd],[hw,y0,hd],[-hw,y0,hd],[-hw,y1,-hd],[hw,y1,-hd],[hw,y1,hd],[-hw,y1,hd]].map(v=>pr(v[0]+bx,v[1],v[2]+bz));
+ctx.strokeStyle=k===2?'#FF7A1A':k===1?'#22D3C5':'rgba(34,211,197,.45)';ctx.shadowColor=k===2?'#FF7A1A':'#22D3C5';ctx.shadowBlur=k?10:3;ctx.lineWidth=k?1.5:1;E.forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(V[a][0],V[a][1]);ctx.lineTo(V[b][0],V[b][1]);ctx.stroke()});
+if(k===1&&y1-y0>1){ctx.shadowBlur=0;ctx.globalAlpha=.32;ctx.lineWidth=.8;for(let y=y0+.3;y<y1;y+=.3){const L=[[-hw,y,-hd],[hw,y,-hd],[hw,y,hd],[-hw,y,hd]].map(v=>pr(v[0]+bx,y,v[2]+bz));ctx.beginPath();L.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();ctx.stroke()}ctx.globalAlpha=1}});
+ctx.strokeStyle='#FF7A1A';ctx.shadowColor='#FF7A1A';ctx.shadowBlur=9;ctx.lineWidth=1.6;const sg=(a,b)=>{const p=pr(...a),q=pr(...b);ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke()};
+sg([1.9,0,1.5],[1.9,7.2,1.5]);sg([1.9,7.2,1.5],[-.8,7.2,1.5]);sg([1.9,7.2,1.5],[3.2,7.2,1.5]);const sw=Math.sin(t*.001)*.25;sg([-.4,7.2,1.5],[-.4,6.2+sw,1.5]);sg([0,6.2,0],[0,8,0]);ctx.shadowBlur=0}
+requestAnimationFrame(draw)})();
+
+/* ticker */
+const CN=[['Procore','#E8751A'],['Autodesk Construction Cloud','#0E7FBF'],['Primavera P6','#B8453A'],['IoT sensors','#0FA397'],['Drone surveys','#7C5CD6'],['CCTV and RTSP','#D6407F'],['Excel and CSV','#2E8B57'],['WhatsApp','#3BA55D'],['Microsoft Project','#2F6FDB'],['SAP','#2A9BD6'],['Open API','#FF7A1A'],['Webhooks','#22D3C5']];
+$('#tick').innerHTML=CN.concat(CN).map(c=>`<span><i></i>${c[0]}</span>`).join('');
+$('#cloud').innerHTML=CN.map(c=>`<span style="--c:${c[1]}"><i></i>${c[0]}</span>`).join('');
+
+/* product tour mocks */
+const kp=(a)=>`<div class="mk mk4">${a.map(x=>`<div class="mt"><small>${x[0]}</small><b${x[2]?` style="color:${x[2]}"`:''}>${x[1]}</b></div>`).join('')}</div>`;
+const barsvg=`<svg viewBox="0 0 440 170" width="100%"><g stroke="rgba(255,255,255,.08)"><path d="M0 30H440M0 70H440M0 110H440"/></g>${[['Budget',412,'#22D3C5',60,100],['Concrete',9.4,'#FB7185',60,24],['Rebar',6.1,'#FB7185',50,18],['MEP',-4.2,'#34D399',44,14],['Façade',3.8,'#FB7185',44,13],['Forecast',428.1,'#FF7A1A',40,120]].map((b,i)=>{const x=14+i*70;return `<rect x="${x}" y="${b[3]}" width="50" height="${b[4]}" rx="3" fill="${b[2]}"/><text x="${x+25}" y="${b[3]-6}" text-anchor="middle" fill="#EAF0FA" font-size="11" font-weight="600">${i&&i<5?(b[1]>0?'+':'')+b[1]:b[1]}</text><text x="${x+25}" y="166" text-anchor="middle" fill="#9DABC6" font-size="10">${b[0]}</text>`}).join('')}</svg>`;
+const gantt=[['Raft',0,28,100,0],['Core wall',24,62,74,1],['Tower L1–L38',34,80,38,1],['MEP rough-in',46,88,31,0],['Façade',60,92,6,0]].map(r=>`<div style="display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:center"><span style="font-size:11px;color:#9DABC6">${r[0]}</span><div style="position:relative;height:18px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 12.5%);border-radius:4px"><div style="position:absolute;left:${r[1]}%;width:${r[2]-r[1]}%;top:2px;bottom:2px;border-radius:4px;background:${r[4]?'rgba(255,122,26,.25)':'rgba(34,211,197,.22)'};overflow:hidden"><div style="width:${r[3]}%;height:100%;background:${r[4]?'#FF7A1A':'#22D3C5'}"></div></div></div></div>`).join('');
+const box=(l,t,w,h,txt,c,bad)=>`<div style="position:absolute;left:${l}%;top:${t}%;width:${w}%;height:${h}%;border:2px solid ${c};border-radius:3px"><span style="position:absolute;top:-17px;left:-2px;background:${c};color:#04121a;font-size:10px;font-weight:700;padding:1px 6px;white-space:nowrap">${txt}</span></div>`;
+const MODS=[
+ {i:'doc',n:'AI reports',h:'Reports that write themselves',p:'Pick a project, period and report type. SiteIQ collects the data, finds the risks and writes a report with charts, photos and recommendations.',b:['Daily, weekly and executive formats','Edit with AI, or type over the text','Ask follow-up questions in a side chat','Export to PDF or share a link'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>AI REPORT GENERATOR</span></div><div class="mbody"><div class="mk mk4">${['Collecting site data','Analyzing progress','Detecting risks','Writing report'].map(s=>`<div class="mt" style="padding:8px 10px"><span style="color:#34D399">✓</span> <small style="display:inline;font-size:10px">${s}</small></div>`).join('')}</div><div style="margin-top:12px;color:#C6D2E8;line-height:1.65;font-size:12.5px"><b style="color:#fff;font:700 16px var(--display)">Riyadh Tower Phase 2</b><br>Between 5 and 11 Nov the project moved from 65% to 68% complete, four points behind plan. The L14 east slab was poured on schedule. The main risk is late rebar for L16–L20.</div><div style="margin-top:12px">${kp([['Progress','68%'],['Vs plan','−4','#FB7185'],['Spend','4.9M'],['Incidents','0']])}</div></div></div>`},
+ {i:'plug',n:'Connectors',h:'Every source, one model',p:'Prebuilt connectors pull schedules, BIM issues, sensor streams, drone surveys and field messages into one project record, with a data-health view that shows what is stale.',b:['Procore, Autodesk, Primavera P6','IoT sensors, drones and CCTV','Excel, CSV and WhatsApp updates','Guided field mapping and test'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>CONNECTORS</span></div><div class="mbody"><svg viewBox="0 0 460 170" width="100%"><g fill="none" stroke="rgba(255,255,255,.2)" stroke-dasharray="4 4"><path d="M92 28C200 28 250 85 340 85"/><path d="M92 85H340"/><path d="M92 142C200 142 250 85 340 85"/></g>${[[28,'#E8751A','Pc'],[85,'#0FA397','IoT'],[142,'#7C5CD6','Dr']].map(a=>`<rect x="14" y="${a[0]-22}" width="78" height="44" rx="8" fill="${a[1]}"/><text x="53" y="${a[0]+5}" text-anchor="middle" fill="#fff" font-weight="800" font-size="15">${a[2]}</text>`).join('')}<rect x="340" y="55" width="106" height="60" rx="8" fill="#0A1425" stroke="#FF7A1A" stroke-width="1.5"/><text x="393" y="91" text-anchor="middle" fill="#fff" font-weight="800" font-size="17">SiteIQ</text><circle r="4" fill="#22D3C5"><animateMotion dur="2.4s" repeatCount="indefinite" path="M92 28C200 28 250 85 340 85"/></circle><circle r="4" fill="#FF7A1A"><animateMotion dur="1.8s" repeatCount="indefinite" path="M92 85H340"/></circle><circle r="4" fill="#22D3C5"><animateMotion dur="2.8s" repeatCount="indefinite" path="M92 142C200 142 250 85 340 85"/></circle></svg></div></div>`},
+ {i:'cam',n:'Live site AI',h:'Cameras that spot hazards',p:'AI detection runs on your existing cameras and drone footage. It checks PPE, flags exclusion-zone breaches and logs every alert to a timeline.',b:['Helmet and vest detection','Equipment and vehicle tracking','Safety score with alert timeline','Dust, vibration and temperature sensors'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>LIVE SITE · CAM-02</span></div><div class="mbody"><div style="position:relative;height:210px;border-radius:8px;overflow:hidden;background:linear-gradient(180deg,#1b2c48 0,#3d4f6d 58%,#554b3e 58%,#2a251e)">${box(12,34,30,36,'Excavator','#22D3C5')}<div style="animation:bob 3s ease-in-out infinite">${box(58,36,13,46,'No vest detected ⚠','#FB7185')}</div>${box(78,42,11,40,'Helmet ✓','#22D3C5')}</div><div style="margin-top:10px">${kp([['Safety score','87'],['Dust µg/m³','96'],['Vibration mm/s','1.8'],['Alerts today','3','#FBBF24']])}</div></div></div>`},
+ {i:'coins',n:'Cost control',h:'Know the final cost before it happens',p:'Budget against actual by category, with an AI forecast that extends the curve. Move a slider for steel prices or delay and the forecast updates immediately.',b:['Budget-to-forecast waterfall','Variance chips by cost category','What-if sliders for price, delay, productivity','Contingency tracking'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>COST CONTROL · SAR M</span></div><div class="mbody">${barsvg}<div style="display:flex;justify-content:space-between;margin-top:8px"><span style="color:#9DABC6">Forecast at completion</span><b style="color:#FF9B50">SAR 428.1M (+3.9%)</b></div></div></div>`},
+ {i:'cal',n:'Schedule',h:'See slippage before the programme does',p:'SiteIQ reads your P6 programme, compares it to progress on the ground and predicts which activities will finish late, and why.',b:['Interactive Gantt with critical path','Delay prediction with causes','Milestone tracker and look-ahead','Risk heatmap by likelihood and impact'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>PROGRAMME</span></div><div class="mbody" style="display:grid;gap:9px">${gantt}<div style="color:#9DABC6;font-size:11.5px;margin-top:4px">Orange marks the critical path.</div></div></div>`},
+ {i:'kan',n:'Tasks',h:'Turn every insight into an action',p:'AI suggests the next tasks from the risks it finds. Accept with one click, assign owners and drag cards across a board the whole team shares.',b:['Kanban board with drag and drop','AI suggested tasks','Priorities, owners and due dates','Linked to reports and alerts'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>TASKS</span></div><div class="mbody"><div class="mk" style="grid-template-columns:repeat(3,1fr)">${[['To Do',['Order rebar L16–L20','Night shift booking']],['In Progress',['Pour L14 slab','Survey brackets']],['AI suggested',['Air-freight quote for rebar','Dust check, east hoarding']]].map((c,i)=>`<div class="mt" style="${i===2?'border-style:dashed;border-color:rgba(255,122,26,.5)':''}"><small style="margin-bottom:8px;font-weight:700;color:#EAF0FA">${c[0]}</small>${c[1].map(t=>`<div style="padding:8px;border-radius:6px;background:rgba(255,255,255,.06);margin-bottom:6px;font-size:11px;line-height:1.35">${t}${i===2?'<div style="margin-top:6px;color:#FF9B50;font-weight:700">Accept</div>':''}</div>`).join('')}</div>`).join('')}</div></div></div>`},
+ {i:'truck',n:'Deliveries',h:'Know what is arriving and what it holds up',p:'Track every material package against the activity it feeds. When rebar slips, SiteIQ shows which pours move and what it costs.',b:['Supplier ETAs linked to activities','Delay impact on the critical path','Gate arrival logging with photos','Alerts when a package is at risk'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>DELIVERIES</span></div><div class="mbody" style="display:grid;gap:8px">${[['Rebar grade 60, L16–L20','Pours L16','Delayed 4 days','c-b'],['Curtain wall glass units','Façade L9–L14','On route, ETA Tue','c-t'],['MEP risers, prefabricated','L12 install','Delivered','c-g'],['Lift guide rails','Core B','Booked 24 Nov','c-w']].map(r=>`<div class="mt" style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div><b style="font:600 12.5px Inter;letter-spacing:0">${r[0]}</b><small>Feeds: ${r[1]}</small></div><span class="chip ${r[3]}">${r[2]}</span></div>`).join('')}</div></div>`},
+ {i:'snag',n:'Snagging',h:'Close defects with a photo, not a spreadsheet',p:'Raise a snag from the field, tag level and trade, assign an owner and close it with a photo. Handover packs build themselves.',b:['Photo-tagged defects by level and room','Owners, due dates and reminders','Re-inspection checklists','Handover pack export'],v:`<div class="mock"><div class="mbar"><i></i><i></i><i></i><span>SNAGGING · 47 OPEN</span></div><div class="mbody" style="display:grid;gap:8px">${[['L12-04','Paint touch-up, corridor','Finishes','Open','c-w'],['L12-09','Sprinkler head misaligned','MEP','Assigned','c-t'],['L11-02','Door closer not fitted','Joinery','Open','c-w'],['L10-07','Sealant gap at window','Façade','Closed','c-g']].map(r=>`<div class="mt" style="display:grid;grid-template-columns:58px 1fr auto;gap:10px;align-items:center"><span class="mono" style="font-size:10.5px;color:#FF9B50">${r[0]}</span><div><b style="font:600 12.5px Inter;letter-spacing:0">${r[1]}</b><small>${r[2]}</small></div><span class="chip ${r[4]}">${r[3]}</span></div>`).join('')}</div></div>`}];
+let cur=0,auto=true;
+function showMod(i){cur=i;const m=MODS[i];$$('#tabs button').forEach((b,k)=>{b.classList.toggle('on',k===i);b.setAttribute('aria-selected',k===i)});$('#showcase').innerHTML=`<div class="pane"><h3>${m.h}</h3><p>${m.p}</p><ul class="ticks">${m.b.map(x=>`<li>${ic('chk')}<span>${x}</span></li>`).join('')}</ul></div><div class="pane">${m.v}</div>`}
+$('#tabs').innerHTML=MODS.map(m=>`<button role="tab" aria-selected="false">${ic(m.i)}${m.n}</button>`).join('');
+$$('#tabs button').forEach((b,i)=>b.onclick=()=>{auto=false;showMod(i)});showMod(0);setInterval(()=>{if(auto&&!reduce&&!document.hidden)showMod((cur+1)%MODS.length)},7000);
+
+/* playground */
+const PJ={rt2:{n:'Riyadh Tower Phase 2',prog:68,plan:72,spend:4.9,good:'the level 14 east slab was poured on schedule and cube results came in 8% above target',issue:'rebar for levels 16 to 20 is arriving four days late',dec:'air-freight for the rebar',nar:'برج الرياض – المرحلة الثانية',g:'تمت صبّة سقف الطابق ١٤ في موعدها',i:'يتأخر وصول حديد التسليح للطوابق ١٦ إلى ٢٠ أربعة أيام',d:'الشحن الجوي لحديد التسليح'},
+ noor:{n:'Al-Noor Residential, Jeddah',prog:54,plan:60,spend:3.1,good:'block B blockwork finished two days early',issue:'the rebar delivery from the Jubail supplier slipped to 18 November',dec:'a second rebar supplier',nar:'النور السكني – جدة',g:'انتهى بناء الكتل في المبنى ب قبل يومين',i:'تأخر توريد حديد التسليح من المورّد إلى ١٨ نوفمبر',d:'مورّد ثانٍ لحديد التسليح'},
+ dlp:{n:'Dammam Logistics Park',prog:81,plan:80,spend:2.4,good:'racking installation in warehouse 2 is running ahead of plan',issue:'the fire-alarm panel submittal is still waiting for approval',dec:'early release of the racking payment milestone',nar:'مجمع الدمام اللوجستي',g:'تركيب الرفوف في المستودع ٢ يسبق الخطة',i:'اعتماد لوحة إنذار الحريق لا يزال معلقاً',d:'الصرف المبكر لدفعة الرفوف'}};
+const st={t:'weekly',l:'en',busy:false};
+$$('#pt button').forEach(b=>b.onclick=()=>{st.t=b.dataset.v;$$('#pt button').forEach(x=>x.classList.toggle('on',x===b))});
+$$('#pl button').forEach(b=>b.onclick=()=>{st.l=b.dataset.v;$$('#pl button').forEach(x=>x.classList.toggle('on',x===b))});
+const PS=['Collecting site data','Analyzing progress','Detecting risks','Writing report'];
+$('#ppipe').innerHTML=PS.map(s=>`<div class="ps"><span class="d"></span>${s}</div>`).join('');
+function ptext(p,t,l){const dl=p.prog-p.plan,ab=Math.abs(dl),days=Math.max(2,Math.round(ab*1.4));
+ if(l==='ar'){const tt={daily:'تقرير الموقع اليومي',weekly:'تقرير التقدم الأسبوعي',exec:'الملخص التنفيذي'}[t];return {h:`${tt} · ${p.nar}`,b:`نسبة الإنجاز ${p.prog}٪ مقابل ${p.plan}٪ في الخطة. ${p.g}. أبرز المخاطر: ${p.i}. القرار المطلوب: ${p.d}.`}}
+ const tt={daily:'Daily site report',weekly:'Weekly progress report',exec:'Executive summary'}[t];
+ const cap=s=>s[0].toUpperCase()+s.slice(1);
+ const b=t==='daily'?`${p.n} is ${p.prog}% complete against a plan of ${p.plan}%. ${cap(p.good)}. The main concern is that ${p.issue}. No safety incidents were recorded today.`:t==='exec'?`${p.n} is ${p.prog}% complete and ${dl<0?`trending about ${days} days behind`:'on or ahead of'} programme. The decision needed this week is ${p.dec}.`:`This week ${p.n} moved to ${p.prog}% complete, ${dl<0?`${ab} points behind plan, roughly ${days} days`:`${dl} point${dl===1?'':'s'} ahead of plan`}. ${cap(p.good)}. The main risk is that ${p.issue}. Spend for the week was SAR ${p.spend} million. Recommended action: ${p.dec}.`;
+ return {h:`${tt} · ${p.n}`,b}}
+async function gen(){if(st.busy)return;st.busy=true;const btn=$('#pgo'),steps=$$('#ppipe .ps'),tx=$('#ptxt'),cards=$('#pcards');btn.disabled=true;btn.querySelector('span').textContent='Generating…';cards.style.opacity=0;tx.textContent='';steps.forEach(s=>{s.className='ps';$('.d',s).textContent=''});
+ for(const s of steps){s.classList.add('run');await sleep(reduce?40:640);s.classList.remove('run');s.classList.add('ok');$('.d',s).textContent='✓'}
+ const p=PJ[$('#pp').value],r=ptext(p,st.t,st.l),dl=p.prog-p.plan;$('#pttl').textContent='REPORT PREVIEW';
+ tx.dir=st.l==='ar'?'rtl':'ltr';tx.style.fontFamily=st.l==='ar'?"'Noto Sans Arabic',Inter,sans-serif":'';tx.innerHTML=`<b class="h"></b><span class="body caret"></span>`;$('.h',tx).textContent=r.h;const body=$('.body',tx),w=r.b.split(' ');
+ for(let i=1;i<=w.length;i++){body.textContent=w.slice(0,i).join(' ');await sleep(reduce?0:34)}body.classList.remove('caret');
+ cards.innerHTML=[['Progress',p.prog+'%',''],['Vs plan',(dl>0?'+':'')+dl+' pts',dl<0?'#FB7185':'#34D399'],['Weekly spend','SAR '+p.spend+'M',''],['Incidents','0','']].map(c=>`<div class="mt"><small>${c[0]}</small><b${c[2]?` style="color:${c[2]}"`:''}>${c[1]}</b></div>`).join('');cards.style.opacity=1;
+ btn.disabled=false;btn.querySelector('span').textContent='Generate again';st.busy=false}
+$('#pgo').onclick=gen;
+
+/* bento */
+const CAP=[['spark','AI report writer','Daily, weekly and executive reports in under a minute, in Arabic or English.','Core',2],['plug','Site-data connectors','Procore, Autodesk, P6, sensors, drones, CCTV, CSV and WhatsApp.','Core',0],['cam','Live safety detection','PPE, exclusion zones and equipment spotted on camera.','AI',0],['radar','Delay prediction','Forecasts which activities will finish late, with the cause.','AI',0],['coins','Cost forecast and what-if','Test steel price, delay and productivity changes before committing.','Core',2],['truck','Delivery tracking','ETAs linked to the activity each package feeds.','',0],['snag','Snagging and defects','Photo-tagged snag lists with owners and due dates.','',0],['folder','Document control','Drawings and approvals with revision history.','',0],['kan','Tasks with AI suggestions','One-click tasks from the risks SiteIQ finds.','',0],['chat','Field updates by WhatsApp','Foremen send photos and notes. SiteIQ files them.','',0],['users','Role-based access','Each role sees only what it needs.','',2],['code','Open API and webhooks','Push data in, pull reports out, trigger workflows.','',0],['bars','Portfolio dashboard','Every site on one map with on-time and budget trends.','',0],['bell','Smart alerts','Critical, warning and update feeds, with swipe to dismiss.','',0],['wifi','Offline field app','Capture without signal and sync later.','',0],['log','Audit trail','Every change logged with who and when.','',0]];
+$('#bento').innerHTML=CAP.map(c=>`<article class="cm bc reveal${c[4]?' w2':''}"><div class="ico">${ic(c[0])}</div>${c[3]?`<span class="tag">${c[3]}</span>`:''}<h3>${c[1]}</h3><p>${c[2]}</p></article>`).join('');
+
+/* roles */
+const ROLES=[{n:'Executive',s:'Portfolio view',i:'bars',h:'See every site in one glance',p:'A single dashboard for on-time, budget and safety, with AI insights that tell you where to look.',b:['Portfolio map with live status','Weekly executive summary by email','Drill into any project in two clicks'],k:[['On-time','78.4%'],['Variance','+3.9%','#FB7185'],['Incidents','2']]},
+ {n:'Project manager',s:'Control room',i:'cal',h:'Run the project from one screen',p:'Programme, risks, deliveries and tasks together, with a report ready before the client meeting.',b:['Delay prediction with causes','Risk heatmap and mitigation tasks','One-click client reports'],k:[['Progress','68%'],['Float','0 d','#FBBF24'],['Open risks','7']]},
+ {n:'Site engineer',s:'Field first',i:'hard',h:'Log the day in minutes',p:'Send photos and notes from the field app. SiteIQ files them and drafts the daily report.',b:['WhatsApp and app updates','Pour and inspection checklists','Snags closed with a photo'],k:[['Workers','612'],['Pours today','2'],['Snags open','47','#FBBF24']]},
+ {n:'Quantity surveyor',s:'Cost desk',i:'coins',h:'Catch overruns before month end',p:'Budget, actual and forecast by cost code with what-if sliders for price and delay.',b:['Variance by category','Forecast at completion','Contingency tracking'],k:[['Budget','412M'],['Forecast','428M','#FF9B50'],['Contingency','3.9M']]},
+ {n:'Safety officer',s:'HSE',i:'shield',h:'Spot hazards as they happen',p:'Camera detection, sensor thresholds and a timeline of every alert, with toolbox-talk records.',b:['PPE and exclusion-zone alerts','Safety score trend','Near-miss log'],k:[['Score','87'],['Alerts','3','#FBBF24'],['PPE rate','97%']]}];
+let ri=0;function showRole(i){ri=i;$$('#rl button').forEach((b,k)=>b.classList.toggle('on',k===i));const r=ROLES[i];$('#rv').innerHTML=`<div class="pane"><h3>${r.h}</h3><p>${r.p}</p><ul class="ticks">${r.b.map(x=>`<li>${ic('chk')}<span>${x}</span></li>`).join('')}</ul></div><div class="pane mock"><div class="mbar"><i></i><i></i><i></i><span>${r.n.toUpperCase()} VIEW</span></div><div class="mbody"><div class="mk" style="grid-template-columns:repeat(3,1fr)">${r.k.map(x=>`<div class="mt"><small>${x[0]}</small><b${x[2]?` style="color:${x[2]}"`:''}>${x[1]}</b></div>`).join('')}</div><svg viewBox="0 0 360 100" width="100%" style="margin-top:12px"><g stroke="rgba(255,255,255,.08)"><path d="M0 25H360M0 50H360M0 75H360"/></g><path d="M0 82C50 76 90 62 140 50S240 34 300 22 340 14 360 10" fill="none" stroke="#22D3C5" stroke-width="2.6" stroke-linecap="round"/><path d="M220 38C260 28 310 20 360 8" fill="none" stroke="#FF7A1A" stroke-width="2.6" stroke-dasharray="6 5"/></svg></div></div>`}
+$('#rl').innerHTML=ROLES.map(r=>`<button>${ic(r.i)}<span>${r.n}<small>${r.s}</small></span></button>`).join('');$$('#rl button').forEach((b,i)=>b.onclick=()=>showRole(i));showRole(0);
+
+/* roi */
+function roi(){const a=+$('#r1').value,b=+$('#r2').value,c=+$('#r3').value,d=+$('#r4').value,e=+$('#r5').value/100;$('#rv1').textContent=a;$('#rv2').textContent=b;$('#rv3').textContent=c.toFixed(1);$('#rv4').textContent=d;$('#rv5').textContent=Math.round(e*100)+'%';
+ const hm=a*b*c*4.33*e,sar=hm*12*d;$('#rbig').textContent='SAR '+Math.round(sar).toLocaleString('en-US');$('#rh').textContent=Math.round(hm).toLocaleString('en-US');$('#rw').textContent=(hm*12/40).toFixed(1)}
+$$('#roi input[type=range]').forEach(i=>i.addEventListener('input',roi));roi();
+
+/* phone chat */
+const CH=[['me','Level 14 east slab poured. Finishing now.','','18:42 · photo'],['ai','Filed to L14 · Concrete · Pour 07. Coverage 98%. Cube set logged.','','AI · tagged'],['me','Rebar truck at gate 2 but only 6 of 10 bundles.','','18:51'],['ai','Delivery marked partial. Procurement notified. Pour L16 flagged at risk.','','AI · alert sent'],['me','Worker in stairwell without hi-vis, sent him to get one.','','19:04'],['ai','Logged as a near-miss. Added to today’s safety report.','','AI · filed']];
+let ci=0;async function chatLoop(){const box=$('#pmsgs');while(true){if(document.hidden||!box.isConnected){await sleep(1000);continue}const m=CH[ci%CH.length];if(ci%CH.length===0)box.innerHTML='';const d=document.createElement('div');d.className='bub '+m[0];d.innerHTML=(ci%CH.length===0?'<div class="im"></div>':'')+m[1]+`<span class="meta">${m[3]}</span>`;box.appendChild(d);ci++;await sleep(reduce?2000:2400)}}chatLoop();
+
+/* data health */
+const H=[['Procore',48210,3,30],['Autodesk Construction Cloud',21480,2,45],['Primavera P6',9120,1,60],['IoT sensors',152340,48,5],['CCTV and RTSP',18760,6,10]].map(h=>h.concat(Math.floor(Math.random()*15)+2));
+function health(){let tot=0;const rows=H.map(h=>{h[4]++;if(h[4]>=h[3]){h[4]=0;h[1]+=Math.round(h[2]*h[3]*(.7+Math.random()*.6))}tot+=h[1];return `<div style="display:grid;grid-template-columns:1.4fr auto 1fr 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--mline);align-items:center"><span style="display:flex;gap:8px;align-items:center"><i style="width:8px;height:8px;border-radius:50%;background:#34D399"></i>${h[0]}</span><span class="chip c-g">Healthy</span><span style="color:#9DABC6;text-align:end">${h[4]}s ago</span><b style="text-align:end;font-variant-numeric:tabular-nums">${h[1].toLocaleString('en-US')}</b></div>`}).join('');$('#health').innerHTML=`<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px"><span style="color:#9DABC6">Records ingested today</span><b style="font:800 26px var(--display);letter-spacing:-.03em;font-variant-numeric:tabular-nums">${tot.toLocaleString('en-US')}</b></div>${rows}`}
+health();setInterval(()=>{if(!document.hidden)health()},1000);
+
+/* arabic card */
+const BI={en:{d:'ltr',h:'Weekly progress report',r:[['Project','Riyadh Tower Phase 2'],['Completion','68%'],['Variance to plan','−4 points'],['Forecast cost','SAR 428.1M'],['Top risk','Late rebar delivery']]},ar:{d:'rtl',h:'تقرير التقدم الأسبوعي',r:[['المشروع','برج الرياض – المرحلة الثانية'],['نسبة الإنجاز','٦٨٪'],['الانحراف عن الخطة','−٤ نقاط'],['التكلفة المتوقعة','٤٢٨٫١ مليون ريال'],['أبرز المخاطر','تأخر توريد حديد التسليح']]}};
+function bi(l){const o=BI[l],e=$('#bi');e.dir=o.d;e.style.fontFamily=l==='ar'?"'Noto Sans Arabic',Inter,sans-serif":'';e.innerHTML=`<h4>${o.h}</h4>${o.r.map((r,i)=>`<div class="r"${i===o.r.length-1?' style="border:0"':''}><span>${r[0]}</span><b${i===2?' style="color:#FB7185"':''}>${r[1]}</b></div>`).join('')}`;$$('#lt button').forEach(b=>b.classList.toggle('on',b.dataset.l===l))}
+$$('#lt button').forEach(b=>b.onclick=()=>bi(b.dataset.l));bi('en');
+
+/* faq + form */
+const FQ=[['Do we have to replace our current tools?','No. SiteIQ sits on top of Procore, Primavera P6, Autodesk and your files. Your teams keep working where they are.'],['How does SiteIQ write a report?','It pulls the latest progress, cost, manpower, photos and safety data, compares them with the plan, then drafts the summary, risks and recommendations. You review and edit before sending.'],['Can reports be produced in Arabic?','Yes. The interface and generated reports are designed for Arabic and English, with right-to-left layouts.'],['How long does setup take?','A pilot connects two or three sources and produces a first report in days. Camera and sensor setup depends on your site network.'],['Does it work without internet on site?','The field app captures photos and notes offline and syncs when the phone reconnects.'],['Who can see our data?','Access is role-based and every change is logged. Detailed security and hosting terms will be agreed per customer.'],['Is this a finished product?','This website and the demo are a concept with sample data. Features, figures and pricing shown here are illustrative.']];
+$('#faqs').innerHTML=FQ.map((f,i)=>`<div class="q"><button aria-expanded="false" aria-controls="fa${i}"><span>${f[0]}</span>${ic('plus')}</button><div class="a" id="fa${i}"><div>${f[1]}</div></div></div>`).join('');
+$$('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,on=!q.classList.contains('on');q.classList.toggle('on',on);b.setAttribute('aria-expanded',on)});
+$('#dform').addEventListener('submit',e=>{e.preventDefault();$('#thanks').textContent='Thanks. This is a concept page, so nothing was sent.';$('#email').value=''});
+
+
+/* dashboard */
+(function(){
+const PJ=[{id:'rt2',n:'Riyadh Tower Phase 2',c:'Riyadh',lo:46.68,la:24.71,pr:68,pl:72,b:412,cr:612,st:'warn'},{id:'noor',n:'Al-Noor Residential',c:'Jeddah',lo:39.17,la:21.54,pr:54,pl:60,b:268,cr:348,st:'bad'},{id:'dlp',n:'Dammam Logistics Park',c:'Dammam',lo:50.1,la:26.43,pr:81,pl:80,b:196,cr:275,st:'good'},{id:'mgh',n:'Madinah Gate Hotel',c:'Madinah',lo:39.61,la:24.47,pr:42,pl:42,b:334,cr:421,st:'good'},{id:'rsm',n:'Red Sea Marina',c:'Umluj',lo:37.27,la:25.02,pr:29,pl:33,b:548,cr:256,st:'warn'},{id:'abha',n:'Abha Hillside Villas',c:'Abha',lo:42.5,la:18.22,pr:91,pl:90,b:74,cr:118,st:'good'}];
+const COL={good:'#34D399',warn:'#FBBF24',bad:'#FB7185'},LBL={good:'On plan',warn:'Watch',bad:'Behind'};
+const KSA=[[34.95,29.35],[35.2,28.1],[35.7,27.35],[36.45,26.25],[37.3,25.2],[38.05,24.1],[39.0,22.8],[39.15,21.5],[40.3,20.1],[41.07,19.13],[41.9,17.9],[42.55,16.9],[42.75,16.4],[43.1,16.7],[43.7,17.3],[44.5,17.4],[46.0,17.3],[47.0,16.95],[48.0,18.0],[49.0,18.6],[52.0,19.0],[55.0,20.0],[55.67,21.9],[55.2,22.7],[52.6,22.95],[51.6,24.1],[51.3,24.6],[50.85,24.75],[50.3,25.8],[50.2,26.4],[49.7,27.1],[48.9,27.8],[48.5,28.4],[47.7,28.55],[46.55,29.1],[44.7,29.2],[42.0,31.0],[39.2,32.15],[37.0,32.0],[36.95,31.5],[37.5,30.5],[37.0,29.95],[36.5,29.5],[35.4,29.1]];
+const P=(lo,la)=>[(lo-34)*30,(33.3-la)*30];
+const KP={'7D':{ap:6,ot:78.4,bv:3.9,si:2,d:['+1','−2.1 pts','SAR 16.1M','−3'],s:[[5,5,5,5,5,6,6],[84,83,82,81,80.5,79,78.4],[.8,1.2,1.9,2.4,2.9,3.4,3.9],[6,5,5,4,3,3,2]]},'30D':{ap:6,ot:81.2,bv:2.8,si:5,d:['+1','−0.9 pts','SAR 11.5M','−4'],s:[[4,5,5,5,6,6,6],[84,83,83,82,82,81.5,81.2],[.4,.9,1.3,1.8,2.2,2.5,2.8],[9,8,7,7,6,6,5]]},'QTD':{ap:7,ot:83,bv:1.9,si:11,d:['+2','+0.6 pts','SAR 7.8M','−6'],s:[[5,5,6,6,6,7,7],[80,81,81,82,82,83,83],[.2,.5,.9,1.2,1.5,1.7,1.9],[17,16,14,13,12,12,11]]}};
+const KL=[['Active Projects','ap',0,'#22D3C5','good'],['On-Time %','ot',1,'#22D3C5','warn'],['Budget Variance','bv',1,'#FF7A1A','bad'],['Safety Incidents','si',0,'#22D3C5','good']];
+const spk=(v,c)=>{const w=200,h=30,mn=Math.min(...v),mx=Math.max(...v),X=i=>3+(w-6)*i/(v.length-1),Y=x=>h-3-(h-6)*(x-mn)/((mx-mn)||1);return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><path d="${v.map((x,i)=>(i?'L':'M')+X(i)+','+Y(x)).join('')}" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/><circle cx="${X(v.length-1)}" cy="${Y(v[v.length-1])}" r="3" fill="${c}"/></svg>`};
+let range='7D',filt='all';
+function kpis(){const k=KP[range];$('#dk').innerHTML=KL.map((l,i)=>`<div class="mt"><small>${l[0]}</small><b data-v="${k[l[1]]}" data-d="${l[2]}" data-p="${l[1]==='bv'?'+':''}" data-s="${l[1]==='ot'||l[1]==='bv'?'%':''}">0</b><div><span class="chip ${l[4]==='good'?'c-g':l[4]==='warn'?'c-w':'c-b'}">${k.d[i]}</span></div><div class="sp">${spk(k.s[i],l[3])}</div></div>`).join('');
+ $$('#dk b').forEach(n=>{const to=+n.dataset.v,dec=+n.dataset.d,pre=n.dataset.p,suf=n.dataset.s;const fmt=v=>pre+v.toFixed(dec)+suf;if(reduce){n.textContent=fmt(to);return}const t0=performance.now();(function f(t){const q=Math.min(1,(t-t0)/1000),e=1-Math.pow(1-q,3);n.textContent=fmt(to*e);if(q<1)requestAnimationFrame(f)})(t0)})}
+$('#drange').onclick=e=>{const b=e.target.closest('button');if(!b)return;range=b.dataset.r;$$('#drange button').forEach(x=>x.classList.toggle('on',x===b));kpis()};
+$('#dchips').innerHTML=[['all','All sites','#9DABC6'],['good','On plan','#34D399'],['warn','Watch','#FBBF24'],['bad','Behind','#FB7185']].map((c,i)=>`<button data-f="${c[0]}" class="${i?'':'on'}"><i style="background:${c[2]}"></i>${c[1]}</button>`).join('');
+$('#dchips').onclick=e=>{const b=e.target.closest('button');if(!b)return;filt=b.dataset.f;$$('#dchips button').forEach(x=>x.classList.toggle('on',x===b));$$('#dmap .pin').forEach(g=>g.classList.toggle('dim',filt!=='all'&&PJ.find(p=>p.id===g.dataset.id).st!==filt));$('#dpd').classList.remove('on')};
+/* map */
+let svg='<svg viewBox="0 0 660 520"><defs><pattern id="dd" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="rgba(255,255,255,.07)"/></pattern></defs><rect width="660" height="520" fill="url(#dd)"/>';
+svg+=`<path class="ksa" d="${KSA.map((q,i)=>(i?'L':'M')+P(...q).map(n=>n.toFixed(1)).join(',')).join('')}Z"/>`;
+[['JORDAN',36.2,32.6],['IRAQ',43,31],['KUWAIT',47.2,29.3],['RED SEA',36.6,22.6],['YEMEN',45,16.5],['OMAN',54.5,19],['UAE',54.3,23.6],['ARABIAN GULF',51.7,27.6]].forEach(([n,lo,la])=>{const q=P(lo,la);svg+=`<text class="geo" x="${q[0]}" y="${q[1]}">${n}</text>`});
+PJ.forEach(p=>{const [x,y]=P(p.lo,p.la),c=COL[p.st];svg+=`<g class="pin" data-id="${p.id}" tabindex="0"><circle class="pulse" cx="${x}" cy="${y}" r="7" fill="${c}"/><circle cx="${x}" cy="${y}" r="6" fill="${c}" stroke="#0A1425" stroke-width="2.5"/><text x="${x+12}" y="${y+4}">${p.c}</text></g>`});
+$('#dmap').innerHTML=svg+'</svg><div class="mtip" id="mtip"></div>';
+const tip=$('#mtip');$$('#dmap .pin').forEach(g=>{const p=PJ.find(q=>q.id===g.dataset.id),[x,y]=P(p.lo,p.la);const show=()=>{tip.innerHTML=`<b>${p.n}</b><div class="r"><span>Status</span><span style="color:${COL[p.st]}">${LBL[p.st]}</span></div><div class="r"><span>Progress</span><span>${p.pr}% of ${p.pl}% plan</span></div><div class="r"><span>Budget</span><span>SAR ${p.b}M</span></div>`;tip.style.left=Math.max(16,Math.min(84,x/660*100))+'%';tip.style.top=(y/520*100)+'%';tip.classList.add('on')};
+ g.onpointerenter=show;g.onfocus=show;g.onpointerleave=()=>tip.classList.remove('on');g.onblur=()=>tip.classList.remove('on');
+ g.onclick=()=>{const d=$('#dpd'),dl=p.pr-p.pl;d.innerHTML=`<div><b>${p.n}</b><div style="color:#9DABC6;font-size:12px">${p.c} · ${LBL[p.st]}</div></div><div class="kv"><div>Progress<b>${p.pr}%</b></div><div>Vs plan<b style="color:${dl<0?'#FB7185':'#34D399'}">${dl>0?'+':''}${dl} pts</b></div><div>Budget<b>SAR ${p.b}M</b></div><div>On site<b>${p.cr} workers</b></div></div><a class="btn pri" style="margin-inline-start:auto;padding:9px 14px;font-size:13px" href="#try">Generate its report</a>`;d.classList.add('on')};
+ g.onkeydown=e=>{if(e.key==='Enter')g.onclick()}});
+/* insights */
+const INS=[['bad','Al-Noor Residential · Jeddah','Trending 6 days behind: the rebar delivery from the Jubail supplier slipped to 18 Nov, which holds the raft pour.'],['warn','Riyadh Tower Phase 2','Crane hours for L15 formwork are 22% over plan. Moving two pours to night shift recovers about 2 days.'],['warn','Portfolio cost','Steel prices rose 7% this month. This adds an estimated SAR 4.3M to the forecast across three sites.'],['good','Dammam Logistics Park','1.2 points ahead of plan. Pulling racking in warehouse 3 forward could save 5 days.']];
+let itok=0;async function typeIns(){const tok=++itok,ul=$('#dins');ul.innerHTML='';for(const it of INS){if(tok!==itok)return;const li=document.createElement('li');li.innerHTML=`<span class="sv" style="background:${COL[it[0]]}"></span><div><small>${it[1]}</small><span class="tx caret"></span></div>`;ul.appendChild(li);const tx=$('.tx',li);for(let i=0;i<=it[2].length;i+=2){if(tok!==itok)return;tx.textContent=it[2].slice(0,i);await sleep(reduce?0:15)}tx.textContent=it[2];tx.classList.remove('caret');await sleep(reduce?0:200)}}
+/* chart */
+const LB=['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'],PL=[6,17,31,46,60,72,82,91,100],AC=[5,15,28,42,55],FC=[55,66,76,86,96];
+function chart(anim){const host=$('#dch'),W=host.clientWidth,H=host.clientHeight;if(!W)return;const m={l:34,r:8,t:10,b:22},iw=W-m.l-m.r,ih=H-m.t-m.b,X=i=>m.l+iw*i/8,Y=v=>m.t+ih*(1-v/100);let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><defs><linearGradient id="dg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22D3C5" stop-opacity=".3"/><stop offset="1" stop-color="#22D3C5" stop-opacity="0"/></linearGradient></defs>`;
+ [0,25,50,75,100].forEach(v=>{s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="rgba(255,255,255,.08)"/><text x="${m.l-6}" y="${Y(v)+3.5}" text-anchor="end" fill="#6E7B97" font-size="10">${v}%</text>`});
+ LB.forEach((l,i)=>{if(i%2===0||W>420)s+=`<text x="${X(i)}" y="${H-6}" text-anchor="middle" fill="#6E7B97" font-size="10">${l}</text>`});
+ const path=(a,o)=>a.map((v,i)=>(i?'L':'M')+X(i+(o||0)).toFixed(1)+','+Y(v).toFixed(1)).join('');const dash=anim&&!reduce?' pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"':'';const an=anim&&!reduce?'<animate attributeName="stroke-dashoffset" from="1" to="0" dur="1.4s" fill="freeze"/>':'';
+ s+=`<path d="${path(AC)}L${X(4)},${Y(0)}L${X(0)},${Y(0)}Z" fill="url(#dg)"/><path d="${path(PL)}" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/><path d="${path(AC)}" fill="none" stroke="#22D3C5" stroke-width="2.6" stroke-linecap="round"${dash}>${an}</path><path d="${path(FC,4)}" fill="none" stroke="#FF7A1A" stroke-width="2.6" stroke-dasharray="6 5" stroke-linecap="round"/><circle cx="${X(4)}" cy="${Y(55)}" r="4.5" fill="#22D3C5" stroke="#0A1425" stroke-width="2"/><line id="dhv" y1="${m.t}" y2="${H-m.b}" x1="0" x2="0" stroke="rgba(255,255,255,.3)" opacity="0"/></svg><div class="tip" id="dtp"></div>`;host.innerHTML=s;
+ host.onpointermove=e=>{const r=host.getBoundingClientRect();let i=Math.round((e.clientX-r.left-m.l)/iw*8);i=Math.max(0,Math.min(8,i));const x=X(i),hv=$('#dhv'),tp=$('#dtp');hv.setAttribute('x1',x);hv.setAttribute('x2',x);hv.setAttribute('opacity',1);const a=i<=4?AC[i]:null,f=i>=4?FC[i-4]:null;tp.innerHTML=`<b>${LB[i]}</b><div class="r"><span>Plan</span><span>${PL[i]}%</span></div>${a!=null?`<div class="r"><span>Actual</span><span>${a}%</span></div>`:''}${f!=null&&i>4?`<div class="r"><span>Forecast</span><span>${f}%</span></div>`:''}`;tp.style.left=(x>W-150?x-130:x+10)+'px';tp.classList.add('on')};host.onpointerleave=()=>{$('#dtp').classList.remove('on');$('#dhv').setAttribute('opacity',0)}}
+let cw=0;new ResizeObserver(()=>{const w=$('#dch').clientWidth;if(w&&Math.abs(w-cw)>2){chart(!cw);cw=w}}).observe($('#dch'));
+/* donut */
+const BS=[['Structure',34,'#22D3C5'],['MEP',22,'#FF7A1A'],['Façade',14,'#8B9CFF'],['Labour',16,'#F9C74F'],['Equipment',6,'#F472B6'],['Other',8,'#6E7B97']];
+function donut(){const R=58,C=2*Math.PI*R;let off=0,s=`<svg viewBox="0 0 150 150"><circle cx="75" cy="75" r="${R}" fill="none" stroke-width="16" stroke="rgba(255,255,255,.08)"/>`;BS.forEach(b=>{const len=C*b[1]/100;s+=`<circle cx="75" cy="75" r="${R}" fill="none" stroke-width="16" stroke="${b[2]}" stroke-dasharray="0 ${C}" data-l="${len-2}" data-c="${C}" stroke-dashoffset="${-off}"/>`;off+=len});$('#dring').innerHTML=s+'</svg><div class="mid"><b>SAR 1.83B</b><span>total budget</span></div>';requestAnimationFrame(()=>requestAnimationFrame(()=>$$('#dring circle[data-l]').forEach(c=>c.setAttribute('stroke-dasharray',`${c.dataset.l} ${c.dataset.c}`))));$('#dlg').innerHTML=BS.map(b=>`<span><i style="background:${b[2]}"></i>${b[0]} ${b[1]}%</span>`).join('')}
+/* feed */
+const FD=[['truck','Rebar delivery arrived at Gate 2','Riyadh Tower Phase 2'],['chk','L14 slab pour approved by QA','Riyadh Tower Phase 2'],['alert','Dust reading above threshold, east hoarding','Dammam Logistics Park'],['doc','Daily report auto-sent to 14 recipients','Portfolio'],['hard','Toolbox talk logged, 348 attendees','Al-Noor Residential'],['chk','Façade mock-up passed water test','Madinah Gate Hotel'],['truck','Dredger returned to basin B','Red Sea Marina'],['doc','Variation order VO-114 submitted','Madinah Gate Hotel']];
+let fi=0;function addFeed(first){const e=FD[fi++%FD.length],li=document.createElement('li');li.innerHTML=`<span class="ic"><svg class="i"><use href="#i-${e[0]==='alert'?'bell':e[0]==='chk'?'chk':e[0]}"/></svg></span><div>${e[1]}<small>${e[2]} · ${first?fi*3+2+' min ago':'just now'}</small></div>`;const ul=$('#dfeed');ul.prepend(li);while(ul.children.length>5)ul.lastChild.remove()}
+kpis();donut();for(let i=0;i<5;i++)addFeed(true);
+let started=false,seen=false;new IntersectionObserver(es=>{const v=es[0].isIntersecting;seen=v;if(v&&!started){started=true;typeIns();kpis();chart(true)}}).observe($('#dashapp'));
+setInterval(()=>{if(seen&&!document.hidden)addFeed(false)},4200);
+})();
+
+/* counters + reveal */
+function count(el){const to=+el.dataset.n,s=el.dataset.s||'';if(reduce){el.textContent=to+s;return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1300),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e)+s;if(p<1)requestAnimationFrame(f)})(t0)}
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;en.target.classList.add('vis');if(en.target.dataset.n)count(en.target);io.unobserve(en.target)}),{threshold:.15});
+$$('.reveal,[data-n]').forEach(el=>io.observe(el));setTimeout(()=>$$('.reveal').forEach(el=>el.classList.add('vis')),2500);
+})();
+</script>
+
+</body></html>
